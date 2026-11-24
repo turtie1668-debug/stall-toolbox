@@ -104,7 +104,7 @@ label.f>span{display:block;font-size:.76rem;color:var(--muted);margin-bottom:3px
 .sum small{font-size:.68rem;color:var(--muted);letter-spacing:.1em}
 
 /* layout picker */
-.lpick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.lpick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px}
 .lpick button{border:1px solid #cfcfca;background:#fff;padding:8px 6px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px}
 .lpick button:hover{border-color:#111}
 .lpick button.on{border:2px solid #111;background:var(--bg2);padding:7px 5px 5px}
@@ -398,6 +398,27 @@ img.lgi{display:block;flex:none;width:9mm;height:9mm;object-fit:contain}
 .empty{flex:1;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:8pt;border:.4mm dashed #cfcfca}
 
 
+/* DM 活動型 */
+.promo .dbd{gap:3.2mm}
+.phimg{flex:none;border:.5mm solid #111;overflow:hidden;height:56mm}
+.phimg img{display:block;width:100%;height:100%;object-fit:cover}
+.pks{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:2.4mm}
+.pk2{display:flex;border:.5mm solid #111;min-width:0;background:#fff}
+.pk2>i{writing-mode:vertical-rl;font-style:normal;background:#111;color:#fff;font:700 6pt var(--f-body);letter-spacing:.3em;padding:1.6mm .9mm;display:flex;align-items:center;justify-content:center;flex:none}
+.pk2 .bd{flex:1;padding:1.8mm 2.6mm;min-width:0;display:flex;flex-direction:column;justify-content:center;background:repeating-linear-gradient(135deg,#fff 0 1.6mm,#f2f2ef 1.6mm 3.2mm)}
+.pk2 b{font:900 12pt/1.15 var(--f-body)}
+.pk2 small{font-size:6.2pt;color:var(--muted);margin-top:.6mm}
+.pk2.wide{grid-column:1/-1}
+.pk2.wide .bd{flex-direction:row;align-items:center;gap:3mm}
+.pk2.wide b{font-size:9pt;display:block}
+.pk2 .ths{display:flex;align-items:center;gap:1mm;flex:none}
+.pk2 .ths span{width:13mm;height:13mm;background:var(--bg2);overflow:hidden;display:grid;place-items:center;color:#b7b7b1;border:.2mm solid var(--line)}
+.pk2 .ths img{width:100%;height:100%;object-fit:cover}
+.pk2 .ths svg{width:60%;height:60%}
+.pk2 .ths em{font-style:normal;font-weight:900;font-size:8pt}
+.pk2 .pr{display:flex;gap:1.6mm;align-items:baseline;margin-top:.6mm}
+#cmpStage{padding:4px 0 30px}
+#cmpStage canvas{display:block;margin:0 auto;width:min(100%,620px);height:auto;box-shadow:0 0 0 1px #c9c9c4,0 10px 30px rgba(0,0,0,.12);cursor:move;touch-action:none;background:#fff}
 /* ===================================================================
    擺攤工具箱 shell: left rail on desktop, bottom tab bar on phone
    =================================================================== */
@@ -585,6 +606,9 @@ img.lgi{display:block;flex:none;width:9mm;height:9mm;object-fit:contain}
 .qtw{overflow-x:auto;border:1px solid var(--line)}
 
 /* discount rules editor */
+.pcard{border:2px solid #111;padding:10px 12px;display:flex;flex-direction:column;gap:8px;background:#fff}
+.pcard.off{border-style:dashed;opacity:.6}
+.pcard .chk b{font-size:.92rem}
 .xrule{display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap;font-size:.85rem}
 .xrule input[type=number]{width:90px;border:1px solid #cfcfca;padding:6px 8px}
 #rules{margin-bottom:12px}
@@ -637,6 +661,7 @@ img.lgi{display:block;flex:none;width:9mm;height:9mm;object-fit:contain}
 <section class="mod" id="m-inv" hidden></section>
 <section class="mod" id="m-in" hidden></section>
 <section class="mod" id="m-rep" hidden></section>
+<section class="mod" id="m-ev" hidden></section>
 <section class="mod" id="m-dm" hidden>
 <div class="app">
   <aside class="ui">
@@ -645,7 +670,7 @@ img.lgi{display:block;flex:none;width:9mm;height:9mm;object-fit:contain}
       <button data-tab="prod" class="on">商品</button>
       <button data-tab="event">攤位活動</button>
       <button data-tab="lay">版面</button>
-      <button data-tab="card">小卡</button>
+      <button data-tab="card">小卡</button><button data-tab="img">修圖</button>
       <button data-tab="data">資料／列印</button>
     </div>
     <div class="pane" id="pane"></div>
@@ -776,10 +801,10 @@ const SAMPLE=()=>{const s=SAMPLE0();
  const cost={w1:280,w2:360,w3:210,w4:180,w5:120,w6:150,h1:310,h2:420,h3:260,h4:290,a1:90,a2:60,a3:30,s1:250,s2:140};
  s.products.forEach(p=>{p.stock=stock[p.id]!=null?stock[p.id]:null;p.cost=cost[p.id]!=null?String(cost[p.id]):"";p.safe=5});
  /* the 滿額折扣 is now a rule: the DM prints it and the 收銀台 applies it */
- s.settings.rules=[{min:1000,off:100,rep:false}];
+ s.settings.rules=[{min:1000,off:100,rep:false}];s.settings.promos=[{id:"pr1",type:"amt",on:true,name:"",scope:"",rep:false,min:1000,off:100},{id:"pr2",type:"nfor",on:false,name:"",scope:"hair",rep:false,min:0,n:2,price:1300}];s.settings.promoMode="best";
  s.settings.offers="任購 2 件髮型套件送 防塵收納袋\n追蹤粉專再抽 限定貼紙";
  s.settings.safeDef=5;s.settings.posNo=0;s.settings.autoSold=true;
- s.moves=[];s.sales=[];return s};
+ s.moves=[];s.sales=[];s.events=[{id:"ev1",ev:s.settings.event,date:s.settings.date,booth:s.settings.booth,hall:s.settings.hall,fee:3000,costs:[{n:"交通",a:800},{n:"住宿",a:2400}],target:30000}];s.settings.evId="ev1";return s};
 
 /* ---------- state & storage ---------- */
 let S=SAMPLE(),tab="prod",q="",qcat="",cur=null;
@@ -795,8 +820,8 @@ const num=v=>{const n=parseFloat(String(v==null?"":v).replace(/[^\d.]/g,""));ret
 const money=v=>{const n=num(v);return n==null?"":n.toLocaleString("en-US")};
 let saveT=null,rendT=null;
 function status(t){$("#status").textContent=t}
-function save(){S.meta=S.meta||{};S.meta.updated=Date.now();clearTimeout(saveT);status("尚未儲存…");saveT=setTimeout(async()=>{const ok=await DB.set("state",S);status(ok?"已自動儲存於此瀏覽器 · "+new Date().toLocaleTimeString("zh-TW"):"⚠ 無法存到瀏覽器，請用「匯出 JSON」備份");updBadge();cloudSoon()},400)}
-function changed(now){save();clearTimeout(rendT);if(typeof MOD!=="undefined"&&MOD!=="dm"){dmDirty=true;return}if(now)render();else rendT=setTimeout(render,220)}
+function save(){syncEv();S.meta=S.meta||{};S.meta.updated=Date.now();clearTimeout(saveT);status("尚未儲存…");saveT=setTimeout(async()=>{const ok=await DB.set("state",S);status(ok?"已自動儲存於此瀏覽器 · "+new Date().toLocaleTimeString("zh-TW"):"⚠ 無法存到瀏覽器，請用「匯出 JSON」備份");updBadge();cloudSoon()},400)}
+function changed(now){save();clearTimeout(rendT);if((typeof MOD!=="undefined"&&MOD!=="dm")||tab==="img"){dmDirty=true;return}if(now)render();else rendT=setTimeout(render,220)}
 function normalize(d){const b=SAMPLE();d=d&&typeof d==="object"?d:{};const ds=d.settings||{},st=Object.assign({},b.settings,ds);
  st.curSym=Object.assign({},b.settings.curSym,ds.curSym||(ds.currency?{TWD:ds.currency}:{}));st.card=Object.assign({},b.settings.card,ds.card||{});st.card.fs=Object.assign({lbl:"",nm:"",pr:""},st.card.fs||{});
  /* values that end up inside style attributes are clamped, so an edited or foreign JSON file cannot inject markup */
@@ -807,14 +832,17 @@ function normalize(d){const b=SAMPLE();d=d&&typeof d==="object"?d:{};const ds=d.
  ["lbl","nm","pr"].forEach(k=>{const v=parseFloat(st.card.fs[k]);st.card.fs[k]=v>0&&v<=200?String(v):""});
  if(!Array.isArray(st.pays))st.pays=b.settings.pays.slice();
  if(!Array.isArray(st.links))st.links=[];
+ const okImg=v=>typeof v==="string"&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+\/=]+$/.test(v);if(st.heroImg&&!okImg(st.heroImg))st.heroImg="";if(st.comp&&typeof st.comp==="object"){["L","R"].forEach(k=>{const l=st.comp[k];if(l&&l.src&&!okImg(l.src))l.src=""})}else delete st.comp;
  /* older DM files: their 滿額 text stays in 其他優惠, so start without rules */
  if(!Array.isArray(ds.rules))st.rules=Array.isArray(d.products)?[]:b.settings.rules;
  st.rules=st.rules.filter(r=>r&&typeof r==="object").map(r=>({min:nb(r.min,0,0,1e9),off:nb(r.off,0,0,1e9),rep:!!r.rep}));
+ if(!Array.isArray(ds.promos))st.promos=Array.isArray(d.products)?st.rules.map(r=>({id:uid("pr"),type:"amt",on:true,name:"",scope:"",rep:r.rep,min:r.min,off:r.off})):b.settings.promos;
+ st.promos=st.promos.filter(p=>p&&typeof p==="object"&&PROMO_RANK[p.type]!=null).map(p=>({id:String(p.id||uid("pr")),type:p.type,on:p.on!==false,name:String(p.name||"").slice(0,60),scope:String(p.scope||""),rep:!!p.rep,min:nb(p.min,0,0,1e9),off:nb(p.off,0,0,1e9),rate:nb(p.rate,0,0,100),n:nb(p.n,0,0,999),m:nb(p.m,0,0,999),price:nb(p.price,0,0,1e9),items:Array.isArray(p.items)?p.items.map(String):[]}));if(st.promoMode!=="stack")st.promoMode="best";
  st.posNo=Math.max(0,parseInt(st.posNo)||0);st.safeDef=nb(st.safeDef,5,0,1e6);
  const products=(Array.isArray(d.products)?d.products:b.products).filter(p=>p&&typeof p==="object").map(p=>{p.id=String(p.id||uid());
   p.stock=p.stock===""||p.stock==null||!isFinite(+p.stock)?null:Math.round(+p.stock);p.safe=p.safe==null||!isFinite(+p.safe)?null:Math.max(0,+p.safe);return p});
  return{settings:st,vendors:Array.isArray(d.vendors)?d.vendors:b.vendors,cats:Array.isArray(d.cats)?d.cats:b.cats,products,
-  moves:Array.isArray(d.moves)?d.moves:[],sales:Array.isArray(d.sales)?d.sales:[],meta:Object.assign({},d.meta&&typeof d.meta==="object"?d.meta:{})}}
+  moves:Array.isArray(d.moves)?d.moves:[],sales:Array.isArray(d.sales)?d.sales:[],events:(Array.isArray(d.events)?d.events:Array.isArray(d.products)?[]:b.events).filter(e=>e&&typeof e==="object").map(e=>({id:String(e.id||uid("e")),ev:String(e.ev||""),date:String(e.date||""),booth:String(e.booth||""),hall:String(e.hall||""),fee:nb(e.fee,0,0,1e9),target:nb(e.target,0,0,1e12),costs:(Array.isArray(e.costs)?e.costs:[]).map(c=>({n:String((c&&c.n)||"").slice(0,40),a:nb(c&&c.a,0,0,1e9)}))})),meta:Object.assign({},d.meta&&typeof d.meta==="object"?d.meta:{})}}
 function download(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:type+";charset=utf-8"}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 const CURS=[["TWD","新台幣"],["JPY","日圓"],["USD","美元"],["KRW","韓圜"]];
 const PF={TWD:"price",JPY:"priceJPY",USD:"priceUSD",KRW:"priceKRW"};
@@ -832,7 +860,7 @@ const featured=()=>chosen().filter(p=>p.feat).slice(0,S.settings.layout==="poste
 
 /* ---------- editor tabs ---------- */
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));renderTab()});
-function renderTab(){({prod:tabProd,event:tabEvent,lay:tabLay,card:tabCard,data:tabData})[tab]()}
+function renderTab(){if(tab!=="img")cmpStage(false);({prod:tabProd,event:tabEvent,lay:tabLay,card:tabCard,data:tabData,img:tabImg})[tab]()}
 
 function tabProd(){
  const st=S.settings,ch=chosen(),fe=featured();
@@ -919,7 +947,7 @@ function tabEvent(){const st=S.settings;
 const LAYOUTS=[
  ["feat","主打型","主打照片＋雙欄價目",'<i class="k" style="height:6px"></i><i style="height:14px"></i><i style="flex:1"></i><i class="k" style="height:5px"></i>'],
  ["list","價目表型","每件附縮圖，適合放桌上",'<i class="k" style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:6px"></i>'],
- ["poster","海報型","大攤位號＋主打，貼攤位",'<i class="k" style="height:14px"></i><i class="k" style="height:8px;width:60%"></i><i style="flex:1"></i><i style="height:6px"></i>']];
+ ["promo","活動型","主視覺＋優惠卡＋主打",'<i class="k" style="height:16px"></i><i style="height:8px"></i><i style="height:8px;width:48%;display:inline-block"></i><i style="flex:1"></i>'],["poster","海報型","大攤位號＋主打，貼攤位",'<i class="k" style="height:14px"></i><i class="k" style="height:8px;width:60%"></i><i style="flex:1"></i><i style="height:6px"></i>']];
 function tabLay(){const st=S.settings;
  $("#pane").innerHTML='<div class="hd">版型</div><div class="lpick">'+LAYOUTS.map(([k,n,d,m])=>'<button data-l="'+k+'" class="'+(st.layout===k?"on":"")+'"><span class="mini">'+m+'</span><b>'+n+'</b><small>'+d+'</small></button>').join("")+'</div>'+
  '<div class="hd">紙張</div><div class="chips" id="papers">'+[["a5","A5 單張"],["a4","A4 放大"],["imp","A6 小卡 ×4"]].map(([k,n])=>'<label><input type="radio" name="pp" value="'+k+'"'+(st.paper===k?" checked":"")+'>'+n+'</label>').join("")+'</div>'+
@@ -1130,7 +1158,7 @@ function render(){
  const st=S.settings,host=$("#sheets"),tmp=document.createElement("div");
  /* build at A5 size off-screen so columns can be measured, then wrap in sheets */
  tmp.style.cssText="position:absolute;left:-9999px;top:0";document.body.appendChild(tmp);
- const pages=(st.layout==="list"?buildList:st.layout==="poster"?buildPoster:buildFeat)(tmp);
+ const pages=(st.layout==="list"?buildList:st.layout==="poster"?buildPoster:st.layout==="promo"?buildPromo:buildFeat)(tmp);
  pages.forEach((pg,i)=>{const f=pg.querySelector(".dft b");if(f&&pages.length>1)f.textContent=(i+1)+" / "+pages.length});
  host.innerHTML="";
  const paper=st.paper||"a5",view=st.view||"both";
@@ -1143,7 +1171,7 @@ function render(){
  host.style.setProperty("--band",st.card.band||"#2f3a40");
  const all=host.children;if(all.length)all[all.length-1].classList.add("lastp");
  $("#pagesize").textContent="@page{size:"+(view==="cards"?cr.f.pw+"mm "+cr.f.ph+"mm":(paper==="a5"?"A5":"A4")+" portrait")+";margin:0}@page cards{size:"+cr.f.pw+"mm "+cr.f.ph+"mm;margin:0}.csheet{page:cards}";
- const ch=chosen();$("#cnt").innerHTML=(view!=="cards"?"DM "+ch.length+" 件 <span>· "+pages.length+" 頁"+(paper==="imp"?"（每頁 4 張 A6）":"")+" · "+({feat:"主打型",list:"價目表型",poster:"海報型"})[st.layout]+"</span>":"")+(view==="both"?" <span>／</span> ":"")+(view!=="dm"?"小卡 "+cr.count+" 張 <span>· "+cr.sheets.length+" 頁 · "+(st.card.w/10)+"×"+(st.card.h/10)+" cm · 每頁 "+cr.f.n+" 張</span>":"");
+ const ch=chosen();$("#cnt").innerHTML=(view!=="cards"?"DM "+ch.length+" 件 <span>· "+pages.length+" 頁"+(paper==="imp"?"（每頁 4 張 A6）":"")+" · "+({feat:"主打型",list:"價目表型",poster:"海報型",promo:"活動型"})[st.layout]+"</span>":"")+(view==="both"?" <span>／</span> ":"")+(view!=="dm"?"小卡 "+cr.count+" 張 <span>· "+cr.sheets.length+" 頁 · "+(st.card.w/10)+"×"+(st.card.h/10)+" cm · 每頁 "+cr.f.n+" 張</span>":"");
  $("#view").value=view;if(tab==="card"&&!document.activeElement.closest("#pane")){}
  $("#paper").value=paper;applyZoom();
  if(tab==="prod"&&!document.activeElement.closest(".ed")&&document.activeElement.id!=="q"){/* keep counts fresh */const s=document.querySelector(".sum");if(s){const b=s.querySelectorAll("b");b[0].textContent=ch.length;b[1].textContent=featured().length;b[2].textContent=S.products.filter(p=>p.soldout).length}}
@@ -1179,25 +1207,295 @@ function stockMove(p,type,qty,o){o=o||{};const before=p.stock==null?null:+p.stoc
  const m={id:uid("m"),t:o.t||Date.now(),type,pid:p.id,name:p.name,qty:after-(before||0),before,after,cost:o.cost==null?"":String(o.cost),note:o.note||"",sale:o.sale||"",cb};
  S.moves.unshift(m);if(S.moves.length>8000)S.moves.length=8000;return m}
 
-/* 滿額折扣: printed on the DM and applied at the register */
-function ruleLines(){return(S.settings.rules||[]).filter(r=>r.min>0&&r.off>0).map(r=>(r.rep?"每滿 ":"滿 ")+fmtM(r.min)+" 折 "+fmtM(r.off))}
-function discountFor(sub){let best=0,lab="";(S.settings.rules||[]).forEach(r=>{if(!(r.min>0&&r.off>0)||sub<r.min)return;const d=r.rep?Math.floor(sub/r.min)*r.off:r.off;if(d>best){best=d;lab=(r.rep?"每滿 ":"滿 ")+fmtM(r.min)+" 折 "+fmtM(r.off)}});return{d:Math.min(best,sub),lab}}
-function drawRules(){const box=$("#rules");if(!box)return;const st=S.settings;
- box.innerHTML=(st.rules||[]).map((r,i)=>'<div class="xrule"><span>'+(r.rep?"每滿":"滿")+'</span><input type="number" min="0" inputmode="numeric" data-ri="'+i+'" data-rk="min" value="'+esc(r.min)+'"><span>折</span><input type="number" min="0" inputmode="numeric" data-ri="'+i+'" data-rk="off" value="'+esc(r.off)+'"><label class="chk" style="margin:0"><input type="checkbox" data-ri="'+i+'" data-rk="rep"'+(r.rep?" checked":"")+'> 可累計</label><button class="btn sm warn" data-rx="'+i+'" aria-label="刪除">✕</button></div>').join("")+'<button class="btn sm ghost" id="addR">＋ 新增滿額折扣</button>';
- box.querySelectorAll("input[data-rk]").forEach(x=>{const f=()=>{const r=st.rules[+x.dataset.ri];if(x.dataset.rk==="rep"){r.rep=x.checked;drawRules()}else r[x.dataset.rk]=Math.max(0,parseFloat(x.value)||0);changed()};if(x.type==="checkbox")x.onchange=f;else x.oninput=f});
- box.querySelectorAll("[data-rx]").forEach(x=>x.onclick=()=>{st.rules.splice(+x.dataset.rx,1);drawRules();changed(true)});
- $("#addR").onclick=()=>{st.rules.push({min:1000,off:100,rep:false});drawRules();changed(true)}}
+/* =====================================================================
+   活動：場次（攤位費、其他費用、目標）＋ 優惠活動（自動計算折扣）
+   ===================================================================== */
+/* ---------- 場次 ---------- */
+function curEv(){const st=S.settings;S.events=S.events||[];let e=S.events.find(x=>x.id===st.evId);
+ if(!e){e={id:uid("e"),ev:st.event||"",date:st.date||"",booth:st.booth||"",hall:st.hall||"",fee:0,costs:[],target:0};S.events.unshift(e);st.evId=e.id}return e}
+/* the DM / 收銀台 keep reading settings.event…; this copies them into the current 場次 record */
+function syncEv(){if(!S||!S.settings)return;const e=curEv(),st=S.settings;e.ev=st.event||"";e.date=st.date||"";e.booth=st.booth||"";e.hall=st.hall||""}
+function loadEv(id){const e=(S.events||[]).find(x=>x.id===id);if(!e)return;const st=S.settings;st.evId=e.id;st.event=e.ev;st.date=e.date;st.booth=e.booth;st.hall=e.hall;dmDirty=true}
+const evExp=e=>e?(+e.fee||0)+(e.costs||[]).reduce((a,c)=>a+(+c.a||0),0):0;
+const saleKey=s=>s.evId?"id:"+s.evId:(s.ev+"|"+s.date);
+function evOfKey(k){if(!k||k==="today"||k==="all")return null;if(k.startsWith("id:"))return(S.events||[]).find(e=>e.id===k.slice(3))||null;return(S.events||[]).find(e=>(e.ev+"|"+e.date)===k)||null}
+function evFin(ss,e){const rev=ss.reduce((a,s)=>a+s.total,0),cost=ss.reduce((a,s)=>a+s.lines.reduce((b,l)=>b+(l.cost||0)*l.qty,0),0),disc=ss.reduce((a,s)=>a+(+s.disc||0),0),gp=rev-cost,exp=evExp(e),net=gp-exp,tgt=e?+e.target||0:0;
+ return{rev,cost,disc,gp,exp,net,tgt,margin:rev?gp/rev:0,be:rev&&gp>0?exp/(gp/rev):null,pct:tgt?rev/tgt:null}}
+
+/* ---------- 優惠計算 ----------
+   amt  滿額折：滿 min 折 off（rep＝每滿都折）
+   pct  打折：範圍內商品打 rate 折（9＝九折、85＝八五折），可設門檻 min
+   nfor 任選 N 件 price 元
+   bxgy 買 n 送 m（同範圍內，送最便宜的）
+   bundle 組合價：items 各一件合購 price 元
+   擇優（best）：只套用最划算的一個；疊加（stack）：依 組合→買送→任選→打折→滿額 順序全部套用，同一件商品不重複折扣 */
+const PROMO_T=[["amt","滿額折"],["pct","打折"],["nfor","任選 N 件"],["bxgy","買 N 送 M"],["bundle","組合價"]];
+const PROMO_RANK={bundle:0,bxgy:1,nfor:2,pct:3,amt:4};
+const rnd=x=>S.settings.cur==="USD"?Math.round(x*100)/100:Math.round(x);
+function rateOf(v){v=+v;return!(v>0)?1:v<10?v/10:v<100?v/100:1}
+const rateTxt=v=>{const r=rateOf(v);return String(Math.round(r*100)%10===0?Math.round(r*10):Math.round(r*100))};
+const scopeTxt=p=>p.scope?(catById(p.scope).short||catById(p.scope).name)+" ":"全館 ";
+function promoName(p){if(p.name&&p.name.trim())return p.name.trim();
+ switch(p.type){case"amt":return(p.rep?"每滿 ":"滿 ")+fmtM(p.min)+" 折 "+fmtM(p.off);
+  case"pct":return scopeTxt(p)+rateTxt(p.rate)+" 折"+(p.min>0?"（滿 "+fmtM(p.min)+"）":"");
+  case"nfor":return scopeTxt(p).replace("全館 ","")+"任選 "+p.n+" 件 "+fmtM(p.price);
+  case"bxgy":return scopeTxt(p).replace("全館 ","")+"買 "+p.n+" 送 "+p.m;
+  case"bundle":return"組合價："+(p.items||[]).map(id=>(S.products.find(x=>x.id===id)||{name:"?"}).name).join("＋")+" "+fmtM(p.price)}return"優惠"}
+function promoValid(p){switch(p.type){case"amt":return p.min>0&&p.off>0;case"pct":return rateOf(p.rate)<1;case"nfor":return p.n>=2&&p.price>0;case"bxgy":return p.n>=1&&p.m>=1;case"bundle":return(p.items||[]).length>=2&&p.price>0}return false}
+function calcPromo(p,units,used,base){const free=i=>!used.has(i),inScope=u=>!p.scope||u.cat===p.scope,take=[];let amt=0;
+ const elig=units.map((u,i)=>i).filter(i=>free(i)&&inScope(units[i]));
+ if(p.type==="amt"){if(base>=p.min)amt=p.rep?Math.floor(base/p.min)*p.off:p.off}
+ else if(p.type==="pct"){const s=elig.reduce((a,i)=>a+units[i].price,0);if(s>0&&!(p.min>0&&s<p.min)){amt=s*(1-rateOf(p.rate));take.push(...elig)}}
+ else if(p.type==="nfor"){const n=Math.round(p.n);for(let g=0;g+n<=elig.length;g+=n){const grp=elig.slice(g,g+n),s=grp.reduce((a,i)=>a+units[i].price,0);if(s>p.price){amt+=s-p.price;take.push(...grp)}}}
+ else if(p.type==="bxgy"){const n=Math.round(p.n),m=Math.round(p.m);for(let g=0;g+n+m<=elig.length;g+=n+m){const grp=elig.slice(g,g+n+m);grp.slice(n).forEach(i=>amt+=units[i].price);take.push(...grp)}}
+ else if(p.type==="bundle"){const avail=elig.slice();while(true){const set=[];for(const id of p.items){const k=avail.findIndex(i=>units[i].pid===id&&!set.includes(i));if(k<0)break;set.push(avail[k])}
+   if(set.length!==p.items.length)break;const s=set.reduce((a,i)=>a+units[i].price,0);if(s<=p.price)break;amt+=s-p.price;take.push(...set);set.forEach(i=>avail.splice(avail.indexOf(i),1))}}
+ return{amt:Math.max(0,rnd(amt)),take}}
+/* ls = cart lines; custom amounts count toward 滿額 but never get item discounts */
+function discountFor(ls){const st=S.settings,sub=sumL(ls),units=[];
+ ls.forEach(l=>{if(l.p)for(let i=0;i<l.qty;i++)units.push({pid:l.p.id,cat:l.p.cat,price:l.price})});units.sort((a,b)=>b.price-a.price);
+ const ps=(st.promos||[]).filter(p=>p.on&&promoValid(p)).sort((a,b)=>PROMO_RANK[a.type]-PROMO_RANK[b.type]);let list=[];
+ if(st.promoMode==="stack"){const used=new Set();let base=sub;ps.forEach(p=>{const r=calcPromo(p,units,used,base);if(r.amt>0){list.push({id:p.id,lab:promoName(p),amt:r.amt});r.take.forEach(i=>used.add(i));base-=r.amt}})}
+ else{let best=null;ps.forEach(p=>{const r=calcPromo(p,units,new Set(),sub);if(r.amt>0&&(!best||r.amt>best.amt))best={id:p.id,lab:promoName(p),amt:r.amt}});if(best)list=[best]}
+ let d=list.reduce((a,x)=>a+x.amt,0);if(d>sub){d=sub}
+ return{d,lab:list.map(x=>x.lab).join("、"),list}}
+/* DM prints the enabled promotions */
+function ruleLines(){const ps=(S.settings.promos||[]).filter(p=>p.on&&promoValid(p)).map(promoName);if(ps.length>1&&S.settings.promoMode!=="stack")ps.push("以上優惠擇一，結帳自動選最划算");return ps}
+function drawRules(){const box=$("#rules");if(!box)return;const ps=(S.settings.promos||[]).filter(p=>p.on&&promoValid(p));
+ box.innerHTML=(ps.length?'<ul style="margin:0 0 8px;padding-left:18px">'+ps.map(p=>'<li>'+esc(promoName(p))+'</li>').join("")+'</ul>':'<p class="note">目前沒有啟用的優惠。</p>')+'<button class="btn sm ghost" id="goEv">到「活動」頁設定優惠與場次</button>';
+ $("#goEv").onclick=()=>go("ev")}
+
+/* ---------- 活動 page ---------- */
+function drawEv(){const el=$("#m-ev"),st=S.settings,e=curEv(),evs=S.events||[];
+ const ss=S.sales.filter(s=>!s.void&&(s.evId===e.id||(!s.evId&&s.ev===e.ev&&s.date===e.date))),f=evFin(ss,e);
+ const n0=v=>Math.round(v).toLocaleString("en-US");
+ const ls=cartLines(),dc=discountFor(ls),sub=sumL(ls);
+ el.innerHTML='<div class="xw"><div class="xh"><span class="lg"></span><div><b>活動</b><small>EVENT &amp; PROMOTION</small><small class="upd" data-upd>'+esc(badgeText())+'</small></div></div><div class="xb">'+
+ '<div class="xhd">場次<em>'+evs.length+' 個</em></div>'+
+ '<div class="xrow"><select class="xsearch" id="evSel" style="flex:1">'+evs.map(x=>'<option value="'+esc(x.id)+'"'+(x.id===e.id?" selected":"")+'>'+esc((x.ev||"未命名活動")+(x.date?" · "+x.date:""))+'</option>').join("")+'</select><button class="xpill" id="evNew">＋ 新場次</button>'+(evs.length>1?'<button class="xpill" id="evDel">刪除</button>':"")+'</div>'+
+ '<p class="note" style="margin:0">選擇「目前場次」：收銀台的交易會記在這個場次，DM 也會印這個場次的資訊。</p>'+
+ '<label class="xfl"><span>活動名稱</span><input data-ek="event" value="'+esc(st.event||"")+'"></label>'+
+ '<div class="xtwo"><label class="xfl"><span>日期</span><input data-ek="date" value="'+esc(st.date||"")+'" placeholder="2026-12-19 ～ 12-20"></label><label class="xfl"><span>攤位編號</span><input data-ek="booth" value="'+esc(st.booth||"")+'"></label></div>'+
+ '<label class="xfl"><span>場館／區域</span><input data-ek="hall" value="'+esc(st.hall||"")+'"></label>'+
+ '<div class="xhd">費用與目標</div>'+
+ '<div class="xtwo"><label class="xfl"><span>攤位費</span><input type="number" inputmode="decimal" min="0" data-ef="fee" value="'+(+e.fee||"")+'"></label><label class="xfl"><span>目標營業額</span><input type="number" inputmode="decimal" min="0" data-ef="target" value="'+(+e.target||"")+'"></label></div>'+
+ '<div id="evCosts">'+(e.costs||[]).map((c,i)=>'<div class="xrow" style="margin-bottom:6px"><input class="xsearch" data-ci="'+i+'" data-ck="n" value="'+esc(c.n||"")+'" placeholder="費用名稱（交通、住宿…）" style="flex:2"><input class="xsearch" type="number" inputmode="decimal" min="0" data-ci="'+i+'" data-ck="a" value="'+(+c.a||"")+'" placeholder="金額" style="flex:1"><button class="xpill" data-cdel="'+i+'">✕</button></div>').join("")+'</div>'+
+ '<button class="xpill" id="evCostAdd" style="align-self:flex-start">＋ 其他費用</button>'+
+ '<div class="xhd">這個場次的損益<em>'+ss.length+' 筆交易</em></div>'+
+ '<div class="xstats"><div class="k"><b>'+n0(f.rev)+'</b><small>營業額</small></div><div><b>'+n0(f.exp)+'</b><small>活動費用</small></div><div class="'+(f.net<0?"":"")+'"><b>'+(f.net<0?"−":"")+n0(Math.abs(f.net))+'</b><small>淨利</small></div></div>'+
+ (f.tgt?'<div><div style="display:flex;justify-content:space-between;font-size:.78rem"><span>目標 '+fmtM(f.tgt)+'</span><b>'+Math.round(f.pct*100)+'%</b></div><div style="height:10px;border:1.5px solid #111;margin-top:3px"><div style="height:100%;width:'+Math.min(100,Math.round(f.pct*100))+'%;background:#111"></div></div></div>':"")+
+ '<p class="note" style="margin:0">淨利＝營業額 − 商品成本（'+n0(f.cost)+'）− 活動費用。'+(f.be!=null?'依目前毛利率 '+Math.round(f.margin*100)+'%，營業額要達到 <b>'+fmtM(Math.ceil(f.be))+'</b> 才回本。':f.exp?'有銷售後會算出回本所需的營業額。':"")+(f.disc?' 優惠共折抵 '+fmtM(f.disc)+'。':"")+'</p>'+
+ '<div class="xhd">優惠活動<em>'+(st.promos||[]).filter(p=>p.on).length+' 個啟用</em></div>'+
+ '<div class="xseg" style="grid-template-columns:1fr 1fr"><button data-pm="best" class="'+(st.promoMode!=="stack"?"on":"")+'">擇優：只套用最划算的</button><button data-pm="stack" class="'+(st.promoMode==="stack"?"on":"")+'">疊加：全部套用</button></div>'+
+ '<p class="note" style="margin:0">'+(st.promoMode==="stack"?"疊加時依「組合價 → 買送 → 任選 → 打折 → 滿額」順序計算，同一件商品只折一次，滿額以折後金額判斷。":"擇優時每筆結帳自動挑出折最多的一個優惠。")+'</p>'+
+ (st.promos||[]).map((p,i)=>promoCard(p,i)).join("")+
+ '<div class="row" style="gap:6px">'+PROMO_T.map(([k,n])=>'<button class="xpill" data-padd="'+k+'">＋ '+n+'</button>').join("")+'</div>'+
+ '<div class="xhd">試算<em>用收銀台目前的購物車</em></div>'+
+ (ls.length?'<div class="xnote">小計 '+fmtM(sub)+(dc.list.length?dc.list.map(x=>'<br>'+esc(x.lab)+'：−'+fmtM(x.amt)).join(""):"<br>沒有符合的優惠")+'<br><b>應收 '+fmtM(sub-dc.d)+'</b></div>':'<div class="xempty">到「收銀」放幾件商品進購物車，這裡會顯示每個優惠折多少。</div>')+
+ '</div></div>';
+ bindEv()}
+function promoCard(p,i){const sel=(k,opts,v)=>'<select data-pi="'+i+'" data-pk="'+k+'" class="xsearch">'+opts.map(([a,b])=>'<option value="'+esc(a)+'"'+(String(v||"")===String(a)?" selected":"")+'>'+esc(b)+'</option>').join("")+'</select>';
+ const numF=(k,lab,v,ph)=>'<label class="xfl"><span>'+lab+'</span><input type="number" inputmode="decimal" min="0" step="any" data-pi="'+i+'" data-pk="'+k+'" value="'+(v===0||v==null?"":esc(v))+'" placeholder="'+(ph||"")+'"></label>';
+ const scope='<label class="xfl"><span>適用範圍</span>'+sel("scope",[["","全館"]].concat(S.cats.map(c=>[c.id,c.name])),p.scope)+'</label>';
+ let f="";
+ if(p.type==="amt")f='<div class="xtwo">'+numF("min","滿多少",p.min)+numF("off","折多少",p.off)+'</div><label class="chk"><input type="checkbox" data-pi="'+i+'" data-pk="rep"'+(p.rep?" checked":"")+'> 可累計（每滿一次折一次）</label>';
+ if(p.type==="pct")f='<div class="xtwo">'+numF("rate","折數（9＝九折）",p.rate,"9 或 85")+numF("min","門檻（選填）",p.min)+'</div>'+scope;
+ if(p.type==="nfor")f='<div class="xtwo">'+numF("n","任選幾件",p.n,"3")+numF("price","合計多少",p.price)+'</div>'+scope;
+ if(p.type==="bxgy")f='<div class="xtwo">'+numF("n","買幾件",p.n,"2")+numF("m","送幾件",p.m,"1")+'</div>'+scope;
+ if(p.type==="bundle")f=numF("price","組合價",p.price)+'<div class="xfl"><span>組合內容（各一件，至少兩樣）</span><div class="xchips" style="flex-wrap:wrap">'+S.products.slice().sort(byCat).map(x=>'<button data-pi="'+i+'" data-pb="'+esc(x.id)+'" class="'+((p.items||[]).includes(x.id)?"on":"")+'">'+esc(x.name)+'</button>').join("")+'</div></div>';
+ return'<div class="pcard'+(p.on?"":" off")+'"><div class="xrow" style="align-items:center"><label class="chk" style="margin:0;flex:1"><input type="checkbox" data-pi="'+i+'" data-pk="on"'+(p.on?" checked":"")+'> <b>'+esc(promoName(p))+'</b></label><span class="xtag">'+esc((PROMO_T.find(t=>t[0]===p.type)||["",""])[1])+'</span><button class="xpill" data-pdel="'+i+'">刪除</button></div>'+
+ (promoValid(p)?"":'<p class="note" style="margin:4px 0 0">⚠ 還沒填完整，不會套用</p>')+f+
+ '<label class="xfl"><span>顯示名稱（留白＝自動）</span><input data-pi="'+i+'" data-pk="name" value="'+esc(p.name||"")+'" placeholder="'+esc(promoName(Object.assign({},p,{name:""})))+'"></label></div>'}
+function bindEv(){const el=$("#m-ev"),st=S.settings,e=curEv(),re=()=>{changed();drawEv()};
+ $("#evSel").onchange=x=>{syncEv();loadEv(x.target.value);changed(true);drawEv()};
+ $("#evNew").onclick=()=>{syncEv();const n={id:uid("e"),ev:"新活動",date:"",booth:"",hall:"",fee:0,costs:[],target:0};S.events.unshift(n);loadEv(n.id);changed(true);drawEv();const i=el.querySelector('[data-ek="event"]');if(i){i.focus();i.select()}};
+ if($("#evDel"))$("#evDel").onclick=()=>{if(!confirm("刪除場次「"+(e.ev||"未命名")+"」？已經結帳的交易會保留。"))return;S.events=S.events.filter(x=>x!==e);loadEv(S.events[0].id);changed(true);drawEv()};
+ el.querySelectorAll("[data-ek]").forEach(x=>x.onchange=()=>{st[x.dataset.ek]=x.value.trim();syncEv();dmDirty=true;re()});
+ el.querySelectorAll("[data-ef]").forEach(x=>x.onchange=()=>{e[x.dataset.ef]=Math.max(0,+x.value||0);re()});
+ el.querySelectorAll("[data-ci]").forEach(x=>x.onchange=()=>{const c=e.costs[+x.dataset.ci];c[x.dataset.ck]=x.dataset.ck==="a"?Math.max(0,+x.value||0):x.value.trim();re()});
+ el.querySelectorAll("[data-cdel]").forEach(x=>x.onclick=()=>{e.costs.splice(+x.dataset.cdel,1);re()});
+ $("#evCostAdd").onclick=()=>{e.costs=e.costs||[];e.costs.push({n:"",a:0});changed();drawEv();const ins=el.querySelectorAll('[data-ck="n"]');if(ins.length)ins[ins.length-1].focus()};
+ el.querySelectorAll("[data-pm]").forEach(b=>b.onclick=()=>{st.promoMode=b.dataset.pm;dmDirty=true;re()});
+ el.querySelectorAll("[data-padd]").forEach(b=>b.onclick=()=>{const t=b.dataset.padd,d={amt:{min:1000,off:100},pct:{rate:9},nfor:{n:3,price:0},bxgy:{n:2,m:1},bundle:{items:[],price:0}}[t];
+  st.promos=st.promos||[];st.promos.push(Object.assign({id:uid("pr"),type:t,on:true,name:"",scope:"",rep:false,min:0},d));dmDirty=true;re()});
+ el.querySelectorAll("[data-pdel]").forEach(b=>b.onclick=()=>{const p=st.promos[+b.dataset.pdel];if(!confirm("刪除「"+promoName(p)+"」？"))return;st.promos.splice(+b.dataset.pdel,1);dmDirty=true;re()});
+ el.querySelectorAll("[data-pk]").forEach(x=>x.onchange=()=>{const p=st.promos[+x.dataset.pi],k=x.dataset.pk;
+  p[k]=x.type==="checkbox"?x.checked:(k==="name"||k==="scope")?x.value.trim():Math.max(0,parseFloat(x.value)||0);dmDirty=true;re()});
+ el.querySelectorAll("[data-pb]").forEach(b=>b.onclick=()=>{const p=st.promos[+b.dataset.pi],id=b.dataset.pb;p.items=p.items||[];const k=p.items.indexOf(id);if(k<0)p.items.push(id);else p.items.splice(k,1);dmDirty=true;re()})}
+
+/* ---------- 報表 ---------- */
+const REP={k:"today"};
+function repKeys(){const seen={},out=[];S.sales.forEach(s=>{const k=saleKey(s);if(seen[k])return;const e=evOfKey(k);if(!(s.ev||s.date||e))return;seen[k]=1;out.push([k,(e?e.ev:s.ev)||"未命名活動",e?e.date:s.date])});return out}
+const repMatch=(s,k)=>k==="all"||(k==="today"?s.t>=dayStart():saleKey(s)===k||(k.startsWith("id:")&&!s.evId&&(()=>{const e=evOfKey(k);return e&&s.ev===e.ev&&s.date===e.date})()));
+function repSales(){return S.sales.filter(s=>!s.void&&repMatch(s,REP.k))}
+function drawRep(){const el=$("#m-rep"),keys=repKeys(),ss=repSales(),ev=evOfKey(REP.k),f=evFin(ss,ev),n0=v=>Math.round(v).toLocaleString("en-US");
+ const rev=f.rev,units=ss.reduce((a,s)=>a+s.lines.reduce((b,l)=>b+l.qty,0),0),gp=f.gp;
+ const hrs={};ss.forEach(s=>{const h=new Date(s.t).getHours();hrs[h]=(hrs[h]||0)+s.total});const hk=Object.keys(hrs).map(Number);
+ const h0=hk.length?Math.min(...hk,10):10,h1=hk.length?Math.max(...hk,17):17,hmax=Math.max(1,...Object.values(hrs));
+ const rk={};ss.forEach(s=>s.lines.forEach(l=>{rk[l.name]=(rk[l.name]||0)+l.price*l.qty}));const top=Object.entries(rk).sort((a,b)=>b[1]-a[1]).slice(0,6),tmax=top.length?top[0][1]:1;
+ const pays={};ss.forEach(s=>pays[s.pay]=(pays[s.pay]||0)+s.total);
+ const pr={};ss.forEach(s=>(s.discs||[]).forEach(x=>{const o=pr[x.lab]||(pr[x.lab]={n:0,a:0});o.n++;o.a+=x.amt}));
+ const hours=[];for(let h=h0;h<=h1;h++)hours.push(h);
+ el.innerHTML='<div class="xw"><div class="xh"><span class="lg"></span><div><b>報表</b><small>REPORT</small><small class="upd" data-upd>'+esc(badgeText())+'</small></div><div class="r"><button class="xpill" id="csvS">匯出 CSV</button></div></div><div class="xb">'+
+ '<div class="xchips"><button data-rk="today" class="'+(REP.k==="today"?"on":"")+'">今天</button>'+keys.map(([k,n,d])=>'<button data-rk="'+esc(k)+'" class="'+(REP.k===k?"on":"")+'">'+esc(n)+(d?" · "+esc(d):"")+'</button>').join("")+'<button data-rk="all" class="'+(REP.k==="all"?"on":"")+'">全部</button></div>'+
+ '<div class="xstats"><div class="k"><b>'+n0(rev)+'</b><small>營業額 '+esc(S.settings.cur)+'</small></div><div><b>'+ss.length+'</b><small>筆數</small></div><div><b>'+(ss.length?n0(rev/ss.length):0)+'</b><small>客單價</small></div></div>'+
+ '<div class="xstats"><div><b>'+n0(gp)+'</b><small>毛利</small></div><div><b>'+(rev?Math.round(gp/rev*100):0)+'%</b><small>毛利率</small></div><div><b>'+units+'</b><small>售出件數</small></div></div>'+
+ (ev?'<div class="xhd">活動損益<em>'+esc(ev.ev||"")+'</em></div><div class="xstats"><div><b>'+n0(f.exp)+'</b><small>活動費用</small></div><div class="k"><b>'+(f.net<0?"−":"")+n0(Math.abs(f.net))+'</b><small>淨利</small></div><div><b>'+(rev?Math.round(f.net/rev*100):0)+'%</b><small>淨利率</small></div></div>'+
+  '<p class="note" style="margin:0">攤位費 '+n0(+ev.fee||0)+(ev.costs||[]).filter(c=>+c.a).map(c=>'、'+esc(c.n||"其他")+' '+n0(c.a)).join("")+'。'+(f.tgt?'目標 '+n0(f.tgt)+'，達成 <b>'+Math.round(f.pct*100)+'%</b>。':"")+(f.be!=null?'回本營業額 '+n0(Math.ceil(f.be))+(rev>=f.be?'（已回本）':'，還差 '+n0(Math.ceil(f.be-rev))):"")+'</p>':"")+
+ (Object.keys(pr).length?'<div class="xhd">優惠使用<em>共折 '+n0(f.disc)+'</em></div><div class="pays2">'+Object.entries(pr).map(([k,v])=>'<div>'+esc(k)+'<b>'+v.n+' 次 · −'+n0(v.a)+'</b></div>').join("")+'</div>':"")+
+ (ss.length?'<div class="xhd">每小時營業額</div><div class="bars">'+hours.map(h=>{const v=hrs[h]||0;return'<div><i class="'+(v===hmax?"h":"")+'" style="height:'+Math.round(v/hmax*92)+'%"></i></div>'}).join("")+'</div><div class="axis">'+hours.map(h=>'<span>'+h+'</span>').join("")+'</div>'+
+ '<div class="xhd">熱賣排行</div><ul class="rk">'+top.map(([n,v])=>'<li><span>'+esc(n)+'</span><span class="b"><i style="width:'+Math.round(v/tmax*100)+'%"></i></span><b>'+n0(v)+'</b></li>').join("")+'</ul>'+
+ '<div class="xhd">付款方式</div><div class="pays2">'+Object.entries(pays).map(([k,v])=>'<div>'+esc(k)+'<b>'+n0(v)+'</b></div>').join("")+'</div>':'<div class="xempty">這個範圍還沒有銷售。到「收銀」結帳後就會出現。</div>')+
+ '<p class="note" style="margin:0">毛利＝實收 − 商品成本（取結帳當下的成本）；淨利再扣掉該場次的攤位費與其他費用。已撤銷的交易不計入。</p>'+
+ saleLog(S.sales.filter(s=>repMatch(s,REP.k)).slice(0,60),"交易紀錄")+'</div></div>';
+ el.querySelectorAll("[data-rk]").forEach(b=>b.onclick=()=>{REP.k=b.dataset.rk;drawRep()});
+ $("#csvS").onclick=()=>{const rows=[["單號","時間","活動","日期","攤位","商品","編號","數量","單價","小計","成本","付款","套用優惠","整筆折扣","整筆實收","狀態"]];
+  S.sales.filter(s=>repMatch(s,REP.k)).slice().reverse().forEach(s=>s.lines.forEach((l,i)=>rows.push([pad3(s.no),new Date(s.t).toLocaleString("zh-TW"),s.ev,s.date,s.booth||"",l.name,l.sku,l.qty,l.price,l.price*l.qty,l.cost,s.pay,i?"":(s.discs||[]).map(x=>x.lab).join("、"),i?"":s.disc,i?"":s.total,s.void?"已撤銷":""])));
+  download("銷售紀錄-"+dstr(Date.now())+".csv","﻿"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n"),"text/csv")};
+ bindLog(el)}
+
+/* =====================================================================
+   DM 活動型版面：主視覺圖＋大字優惠卡＋主打商品（原價劃線、活動價）
+   ===================================================================== */
+const PT_TAG={amt:"滿額",pct:"折扣",nfor:"任選",bxgy:"買送",bundle:"組合"};
+function promoCardDM(p){const t=PT_TAG[p.type]||"優惠";
+ if(p.type==="bundle"){const ps=(p.items||[]).map(id=>S.products.find(x=>x.id===id)).filter(Boolean),orig=ps.reduce((a,x)=>a+(num(PR(x))||0),0);
+  return'<div class="pk2 wide"><i>'+t+'</i><div class="bd"><div class="ths">'+ps.map(x=>'<span>'+(x.img?'<img src="'+esc(x.img)+'" alt="">':ico(catById(x.cat).icon))+'</span>').join('<em>＋</em>')+'</div><div><b>'+esc(p.name||ps.map(x=>x.name).join("＋"))+'</b><div class="pr">'+(orig>p.price?'<s>'+esc(CS())+orig.toLocaleString("en-US")+'</s>':"")+'<span class="now"><small>'+esc(CS())+'</small>'+(+p.price).toLocaleString("en-US")+'</span></div></div></div></div>'}
+ const big={amt:()=>(p.rep?"每滿":"滿")+" "+(+p.min).toLocaleString("en-US")+"<br>折 "+(+p.off).toLocaleString("en-US"),pct:()=>rateTxt(p.rate)+" 折",nfor:()=>"任選 "+p.n+" 件<br>"+esc(CS())+(+p.price).toLocaleString("en-US"),bxgy:()=>"買 "+p.n+" 送 "+p.m}[p.type];
+ const sub=p.type==="amt"?(p.rep?"可累計":"每筆一次"):p.type==="pct"?(scopeTxt(p).trim()+(p.min>0?" · 滿 "+(+p.min).toLocaleString("en-US"):"")):scopeTxt(p).trim()+(p.type==="bxgy"?" · 送最便宜的":"");
+ return'<div class="pk2"><i>'+t+'</i><div class="bd"><b>'+(big?big():esc(promoName(p)))+'</b><small>'+esc(p.name&&p.name.trim()?p.name:sub)+'</small></div></div>'}
+function buildPromo(host){const st=S.settings,fe=featured(),ps=(st.promos||[]).filter(p=>p.on&&promoValid(p)),pg=document.createElement("div");pg.className="page promo";
+ const hero=st.heroImg?'<div class="phimg"><img src="'+esc(st.heroImg)+'" alt=""></div>':"";
+ pg.innerHTML=head("EVENT")+'<div class="dbd">'+hero+heroHTML()+
+ (ps.length?'<div class="st"><b>活動優惠</b><small>Special offer</small><em>'+(ps.length>1&&st.promoMode!=="stack"?"擇一 · 自動選最划算":ps.length+" 項")+'</em></div><div class="pks">'+ps.slice().sort((a,b)=>(a.type==="bundle")-(b.type==="bundle")).slice(0,6).map(promoCardDM).join("")+'</div>':'<div class="empty">到「活動」頁新增優惠，這裡會自動排出優惠卡</div>')+
+ (fe.length?'<div class="st"><b>活動主打</b><small>Featured</small></div><div class="feat n'+Math.min(3,fe.length)+'">'+fe.slice(0,3).map(featCard).join("")+'</div>':"")+
+ '<div style="flex:1"></div>'+infoHTML()+'</div>'+foot(0,0);host.appendChild(pg);
+ /* keep it on one A5 page: smaller banner, then 1–2 featured, then fewer offer cards */
+ const bd=pg.querySelector(".dbd"),over=()=>bd.scrollHeight>bd.clientHeight+1,im=pg.querySelector(".phimg");
+ if(over()&&im)im.style.height="42mm";const fe2=pg.querySelector(".feat");if(over()&&fe2&&fe2.children.length>2){fe2.lastElementChild.remove();fe2.className="feat n2"}
+ if(over()&&fe2){fe2.previousElementSibling.remove();fe2.remove()}if(over()&&im)im.style.height="30mm";
+ const ks=[...pg.querySelectorAll(".pk2")];while(over()&&ks.length>2)ks.pop().remove();return[pg]}
+
+/* =====================================================================
+   修圖・合成圖：人物＋商品合成宣傳圖（畫在 canvas 上，可下載 PNG、放進 DM、設為商品照片）
+   ===================================================================== */
+const CMP_PRESETS=[["lr","左人物・右商品"],["rl","左商品・右人物"],["full","人物滿版・商品小窗"],["split","上人物・下商品"]];
+const CMP_SIZES=[["1080x1080","正方形 1:1（IG 貼文）"],["1080x1350","直式 4:5"],["1080x1920","限時動態 9:16"],["1240x1748","A5 海報"]];
+const CMP_DEF=()=>({preset:"lr",size:"1080x1080",c1:"#ffffff",c2:"#bcd4e8",L:{src:"",pid:"",k:"img",x:0,y:0,z:1,bri:100,con:100,sat:100,fade:30,cut:0},R:{src:"",pid:"",k:"img",x:0,y:0,z:1,bri:100,con:100,sat:100,fade:0,cut:0,shadow:true},
+ title:"",tag:"",tsize:100,font:"serif",tcolor:"#111111",badge:true,badgeText:"",brand:true,sel:"L"});
+let CMPU={drag:null,cache:{},busy:false};
+function cmp(){const st=S.settings;st.comp=Object.assign(CMP_DEF(),st.comp||{});st.comp.L=Object.assign(CMP_DEF().L,st.comp.L||{});st.comp.R=Object.assign(CMP_DEF().R,st.comp.R||{});return st.comp}
+const layerSrc=l=>l.src||((S.products.find(p=>p.id===l.pid)||{})[l.k||"img"])||"";
+function loadImage(src){if(!src)return Promise.resolve(null);const c=CMPU.cache[src];if(c)return c;
+ return CMPU.cache[src]=new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=src})}
+/* 去背：把和四個角落相近的顏色變透明（適合白底或單色背景的商品照） */
+function cutout(im,tol){const key=im.src.length+":"+im.src.slice(-40)+":"+tol;if(CMPU.cache[key])return CMPU.cache[key];
+ const k=Math.min(1,1400/Math.max(im.width,im.height)),w=Math.round(im.width*k),h=Math.round(im.height*k),c=document.createElement("canvas");c.width=w;c.height=h;
+ const x=c.getContext("2d");x.drawImage(im,0,0,w,h);const d=x.getImageData(0,0,w,h),a=d.data;
+ const pts=[[2,2],[w-3,2],[2,h-3],[w-3,h-3]].map(([px,py])=>{const i=(py*w+px)*4;return[a[i],a[i+1],a[i+2]]});
+ const t=tol*4.4,soft=t*.35;for(let i=0;i<a.length;i+=4){let dm=1e9;for(const p of pts){const dd=Math.abs(a[i]-p[0])+Math.abs(a[i+1]-p[1])+Math.abs(a[i+2]-p[2]);if(dd<dm)dm=dd}
+  if(dm<t-soft)a[i+3]=0;else if(dm<t)a[i+3]=Math.round(a[i+3]*(dm-(t-soft))/soft)}
+ x.putImageData(d,0,0);return CMPU.cache[key]=c}
+/* where each layer goes, as fractions of the canvas, plus which edge fades */
+function cmpRects(c,W,H){const p=c.preset;
+ if(p==="rl")return{L:[.45,0,.55,1,"l"],R:[.02,.1,.56,.8]};
+ if(p==="full")return{L:[0,0,1,1,""],R:[.54,.5,.42,.42]};
+ if(p==="split")return{L:[0,0,1,.62,"b"],R:[.08,.5,.84,.46]};
+ return{L:[0,0,.58,1,"r"],R:[.42,.08,.56,.84]}}
+async function drawComp(cv,scale){try{await Promise.all([document.fonts.load('700 40px "Noto Serif TC"'),document.fonts.load('900 40px "Noto Sans TC"')])}catch(_){}const c=cmp(),[W,H]=c.size.split("x").map(Number),s=scale||1;cv.width=Math.round(W*s);cv.height=Math.round(H*s);
+ const x=cv.getContext("2d");x.setTransform(s,0,0,s,0,0);
+ const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,c.c1);g.addColorStop(1,c.c2);x.fillStyle=g;x.fillRect(0,0,W,H);
+ const rc=cmpRects(c,W,H),[imL,imR]=await Promise.all([loadImage(layerSrc(c.L)),loadImage(layerSrc(c.R))]);
+ const flt=l=>"brightness("+l.bri+"%) contrast("+l.con+"%) saturate("+l.sat+"%)";
+ const put=(im,l,r,cover)=>{if(!im)return;const src=l.cut>0?cutout(im,l.cut):im,rw=r[2]*W,rh=r[3]*H,rx=r[0]*W,ry=r[1]*H;
+  const iw=src.width,ih=src.height,k=(cover?Math.max(rw/iw,rh/ih):Math.min(rw/iw,rh/ih))*l.z,dw=iw*k,dh=ih*k;
+  const off=document.createElement("canvas");off.width=Math.ceil(rw);off.height=Math.ceil(rh);const o=off.getContext("2d");
+  o.filter=flt(l);o.drawImage(src,(rw-dw)/2+l.x*rw,(rh-dh)/2+l.y*rh,dw,dh);o.filter="none";
+  const f=(l.fade||0)/100,edge=r[4];if(f>0&&edge){const gx=edge==="r"?o.createLinearGradient(rw*(1-f),0,rw,0):edge==="l"?o.createLinearGradient(rw*f,0,0,0):o.createLinearGradient(0,rh*(1-f),0,rh);
+   gx.addColorStop(0,"rgba(0,0,0,1)");gx.addColorStop(1,"rgba(0,0,0,0)");o.globalCompositeOperation="destination-in";o.fillStyle=gx;o.fillRect(0,0,rw,rh);o.globalCompositeOperation="source-over"}
+  if(l===c.R&&l.shadow){x.save();x.shadowColor="rgba(0,0,0,.28)";x.shadowBlur=28;x.shadowOffsetY=10;x.drawImage(off,rx,ry);x.restore()}else x.drawImage(off,rx,ry)};
+ put(imL,c.L,rc.L,true);
+ if(c.preset==="full"){const gg=x.createLinearGradient(0,H*.45,0,H);gg.addColorStop(0,"rgba(0,0,0,0)");gg.addColorStop(1,"rgba(0,0,0,.55)");x.fillStyle=gg;x.fillRect(0,0,W,H);
+  if(imR){const r=rc.R;x.fillStyle="#fff";x.fillRect(r[0]*W-10,r[1]*H-10,r[2]*W+20,r[3]*H+20)}}
+ put(imR,c.R,rc.R,false);
+ /* text with a thick white outline, like the sample */
+ const fam=c.font==="serif"?'"Noto Serif TC",serif':'"Noto Sans TC",sans-serif',dark=c.preset==="full";
+ const txt=(t,px,ax,ay,al,maxW,wt)=>{if(!t)return;x.font=(wt||700)+" "+px+"px "+fam;x.textAlign=al;x.textBaseline="alphabetic";let size=px;while(x.measureText(t).width>maxW&&size>12){size-=2;x.font=(wt||700)+" "+size+"px "+fam}
+  x.lineJoin="round";x.lineWidth=size*.16;x.strokeStyle=dark?"rgba(0,0,0,.65)":"#fff";x.strokeText(t,ax,ay);x.fillStyle=dark?"#fff":c.tcolor;x.fillText(t,ax,ay)};
+ const tsz=W*.105*(c.tsize/100),title=c.title||(S.products.find(p=>p.id===c.R.pid)||{}).name||"",tagT=c.tag||S.settings.event||"";
+ /* title anchor per layout; the 活動 label sits right above the title like a ribbon */
+ const A=c.preset==="split"?{x:W*.5,y:H*.48+tsz*.35,al:"center"}:{x:W*.05,y:H*.94,al:"left"};if(c.preset==="rl")A.x=W*.04;
+ txt(tagT,W*.034,W*.96,H*.07,"right",W*.9);txt(title,tsz,A.x,A.y,A.al,W*.9);
+ if(c.badge){const bt=c.badgeText||badgeAuto();if(bt){x.font="900 "+Math.round(W*.032)+"px "+'"Noto Sans TC",sans-serif';const bh=W*.062,bw=x.measureText(bt).width+W*.05,tw=bw+bh*.6;
+  let bx=A.al==="center"?A.x-tw/2:A.x;const by=A.y-tsz*1.02-bh-W*.012;
+  x.fillStyle="#111";x.fillRect(bx,by,tw,bh);x.save();x.beginPath();x.rect(bx+bw,by,bh*.6,bh);x.clip();x.strokeStyle="#fff";x.lineWidth=bh*.12;for(let i=-bh;i<bh*2;i+=bh*.3){x.beginPath();x.moveTo(bx+bw+i,by+bh);x.lineTo(bx+bw+i+bh,by);x.stroke()}x.restore();
+  x.fillStyle="#fff";x.textAlign="left";x.textBaseline="middle";x.fillText(bt,bx+W*.025,by+bh/2+1)}}
+ if(c.brand){const st=S.settings,b=[st.brand,st.booth?"攤位 "+st.booth:""].filter(Boolean).join(" · ");x.font="700 "+Math.round(W*.022)+"px "+'"Noto Sans TC",sans-serif';x.textAlign="right";x.textBaseline="alphabetic";x.lineWidth=W*.006;x.strokeStyle=dark?"rgba(0,0,0,.6)":"#fff";x.strokeText(b,W*.96,H*.975);x.fillStyle=dark?"#fff":"#111";x.fillText(b,W*.96,H*.975)}
+ return cv}
+function badgeAuto(){const p=(S.settings.promos||[]).find(q=>q.on&&promoValid(q));if(p)return promoName(p);const r=S.products.find(q=>q.id===cmp().R.pid);if(r&&r.dmPrice)return"活動價 "+CS()+(+r.dmPrice).toLocaleString("en-US");return S.settings.booth?"攤位 "+S.settings.booth:""}
+let cmpT=null;function cmpRedraw(){clearTimeout(cmpT);cmpT=setTimeout(async()=>{const cv=$("#cmpCv");if(cv){await drawComp(cv,Math.min(1,900/cmp().size.split("x")[0]))}},30)}
+function cmpStage(on){let st=$("#cmpStage");const was=!!(st&&!st.hidden);if(on&&!st){st=document.createElement("div");st.id="cmpStage";st.innerHTML='<canvas id="cmpCv" aria-label="合成圖預覽"></canvas><p class="note" style="text-align:center">在圖上拖曳可以移動目前選取的圖層（人物或商品）。</p>';$("#preview").appendChild(st);bindCanvas()}
+ if(st)st.hidden=!on;$("#sheets").hidden=!!on;document.querySelectorAll(".vbar>*:not(.cnt)").forEach(e=>e.style.visibility=on?"hidden":"");if(on){$("#cnt").textContent="修圖・合成圖";cmpRedraw()}else if(was){dmDirty=false;render()}}
+function bindCanvas(){const cv=$("#cmpCv");
+ cv.onpointerdown=e=>{const c=cmp(),r=cv.getBoundingClientRect();CMPU.drag={x0:e.clientX,y0:e.clientY,w:r.width,h:r.height,l:c[c.sel],lx:c[c.sel].x,ly:c[c.sel].y};cv.setPointerCapture(e.pointerId)};
+ cv.onpointermove=e=>{const d=CMPU.drag;if(!d)return;const c=cmp(),rc=cmpRects(c)[c.sel];d.l.x=d.lx+(e.clientX-d.x0)/(d.w*rc[2]);d.l.y=d.ly+(e.clientY-d.y0)/(d.h*rc[3]);cmpRedraw()};
+ cv.onpointerup=cv.onpointercancel=()=>{if(CMPU.drag){CMPU.drag=null;changed()}};
+ cv.onwheel=e=>{e.preventDefault();const c=cmp(),l=c[c.sel];l.z=Math.min(4,Math.max(.3,l.z*(e.deltaY<0?1.06:1/1.06)));cmpRedraw();changed();if($("#cmpZ"))$("#cmpZ").value=Math.round(l.z*100)}}
+function tabImg(){const c=cmp(),l=c[c.sel],prodOpts=S.products.flatMap(p=>["img","img2","img3"].filter(k=>p[k]).map(k=>[p.id+"|"+k,p.name+(k==="img"?"":" · 照片"+k.slice(-1))]));
+ const sl=(id,lab,min,max,v,unit)=>'<label class="f"><span style="display:flex;justify-content:space-between">'+lab+'<em style="font-style:normal">'+v+(unit||"")+'</em></span><input type="range" id="'+id+'" min="'+min+'" max="'+max+'" value="'+v+'" style="width:100%;accent-color:#111"></label>';
+ const srcSel=(L)=>'<div class="two"><label class="f"><span>'+(L==="L"?"人物圖":"商品圖")+'</span><select id="cmpSrc"><option value="">— 選商品照片 —</option>'+prodOpts.map(([v,n])=>'<option value="'+esc(v)+'"'+((c[L].pid+"|"+c[L].k)===v&&!c[L].src?" selected":"")+'>'+esc(n)+'</option>').join("")+(c[L].src?'<option value="" selected>（已上傳的圖片）</option>':"")+'</select></label><label class="f"><span>或上傳</span><label class="btn sm ghost" style="cursor:pointer;width:100%">上傳圖片<input type="file" accept="image/*" id="cmpUp" hidden></label></label></div>';
+ $("#pane").innerHTML='<div class="hd">版型</div><div class="lpick" style="grid-template-columns:repeat(2,minmax(0,1fr))">'+CMP_PRESETS.map(([k,n])=>'<button data-cp="'+k+'" class="'+(c.preset===k?"on":"")+'"><b>'+n+'</b></button>').join("")+'</div>'+
+ '<div class="two"><label class="f"><span>尺寸</span><select id="cmpSize">'+CMP_SIZES.map(([k,n])=>'<option value="'+k+'"'+(c.size===k?" selected":"")+'>'+n+'</option>').join("")+'</select></label><label class="f"><span>背景漸層</span><span style="display:flex;gap:6px"><input type="color" id="cmpC1" value="'+esc(c.c1)+'" style="flex:1;height:34px"><input type="color" id="cmpC2" value="'+esc(c.c2)+'" style="flex:1;height:34px"></span></label></div>'+
+ '<div class="hd">圖層</div><div class="chips" id="cmpSel">'+[["L","人物"],["R","商品"]].map(([k,n])=>'<label><input type="radio" name="cs" value="'+k+'"'+(c.sel===k?" checked":"")+'>'+n+'</label>').join("")+'</div>'+
+ srcSel(c.sel)+
+ sl("cmpZ","縮放",30,400,Math.round(l.z*100),"%")+
+ '<div class="two">'+sl("cmpBri","亮度",50,160,l.bri,"%")+sl("cmpCon","對比",50,160,l.con,"%")+'</div>'+
+ '<div class="two">'+sl("cmpSat","飽和度",0,200,l.sat,"%")+sl("cmpFade","邊緣淡出",0,70,l.fade,"%")+'</div>'+
+ sl("cmpCut","去背（把背景色變透明，0＝不去背）",0,60,l.cut,"")+
+ (c.sel==="R"?'<label class="chk"><input type="checkbox" id="cmpSh"'+(l.shadow?" checked":"")+'> 商品陰影</label>':"")+
+ '<div class="row" style="margin-bottom:10px"><button class="btn sm ghost" id="cmpReset">重設這個圖層的位置與調整</button></div>'+
+ '<div class="hd">文字</div>'+
+ '<label class="f"><span>主標（留白＝商品名稱）</span><input type="text" id="cmpTitle" value="'+esc(c.title)+'" placeholder="'+esc((S.products.find(p=>p.id===c.R.pid)||{}).name||"朔炎・冥狐丸")+'"></label>'+
+ '<label class="f"><span>標語（留白＝活動名稱）</span><input type="text" id="cmpTag" value="'+esc(c.tag)+'" placeholder="'+esc(S.settings.event||"")+'"></label>'+
+ '<div class="three"><label class="f"><span>字體</span><select id="cmpFont"><option value="serif"'+(c.font==="serif"?" selected":"")+'>明體</option><option value="sans"'+(c.font==="sans"?" selected":"")+'>黑體</option></select></label><label class="f"><span>字色</span><input type="color" id="cmpTc" value="'+esc(c.tcolor)+'" style="width:100%;height:34px"></label>'+sl("cmpTs","主標大小",50,160,c.tsize,"%")+'</div>'+
+ '<label class="chk"><input type="checkbox" id="cmpBadge"'+(c.badge?" checked":"")+'> 活動標籤（主標上方）</label><label class="f"><span>標籤文字（留白＝自動：優惠或活動價）</span><input type="text" id="cmpBt" value="'+esc(c.badgeText)+'" placeholder="'+esc(badgeAuto())+'"></label>'+
+ '<label class="chk"><input type="checkbox" id="cmpBrand"'+(c.brand?" checked":"")+'> 右下角品牌與攤位</label>'+
+ '<div class="hd">輸出</div><div class="row"><button class="btn" id="cmpPng">下載 PNG</button><button class="btn ghost" id="cmpHero">放進 DM 活動型主視覺</button></div>'+
+ '<div class="row" style="margin-top:8px"><select class="fsel" id="cmpToP" style="flex:1"><option value="">設為哪個商品的照片…</option>'+S.products.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.name)+'</option>').join("")+'</select><button class="btn sm ghost" id="cmpSetP">設為照片</button></div>'+
+ '<p class="note">下載的是完整解析度（'+c.size.replace("x","×")+'）。主視覺會出現在「版面 → 活動型」DM 的最上方。</p>';
+ const re=(all)=>{changed();cmpRedraw();if(all)tabImg()};
+ document.querySelectorAll("[data-cp]").forEach(b=>b.onclick=()=>{c.preset=b.dataset.cp;c.L.fade=c.preset==="full"?0:c.L.fade||30;re(true)});
+ $("#cmpSize").onchange=e=>{c.size=e.target.value;re()};$("#cmpC1").oninput=e=>{c.c1=e.target.value;re()};$("#cmpC2").oninput=e=>{c.c2=e.target.value;re()};
+ document.querySelectorAll("#cmpSel input").forEach(r=>r.onchange=()=>{c.sel=r.value;tabImg()});
+ $("#cmpSrc").onchange=e=>{const[pid,k]=e.target.value.split("|");if(!pid)return;Object.assign(l,{pid,k:k||"img",src:""});re(true)};
+ $("#cmpUp").onchange=async e=>{const fl=e.target.files[0];if(!fl)return;try{l.src=await readImg(fl,1800,true);l.pid="";re(true)}catch(_){alert("無法讀取這張圖片。")}};
+ const bindSl=(id,k,div)=>{$(id).oninput=e=>{l[k]=div?(+e.target.value)/div:+e.target.value;e.target.previousElementSibling.querySelector("em").textContent=e.target.value+(k==="cut"?"":"%");cmpRedraw()};$(id).onchange=()=>changed()};
+ bindSl("#cmpZ","z",100);bindSl("#cmpBri","bri");bindSl("#cmpCon","con");bindSl("#cmpSat","sat");bindSl("#cmpFade","fade");bindSl("#cmpCut","cut");
+ if($("#cmpSh"))$("#cmpSh").onchange=e=>{l.shadow=e.target.checked;re()};
+ $("#cmpReset").onclick=()=>{Object.assign(l,{x:0,y:0,z:1,bri:100,con:100,sat:100,cut:0,fade:c.sel==="L"&&c.preset!=="full"?30:0});re(true)};
+ $("#cmpTitle").oninput=e=>{c.title=e.target.value;re()};$("#cmpTag").oninput=e=>{c.tag=e.target.value;re()};
+ $("#cmpFont").onchange=e=>{c.font=e.target.value;re()};$("#cmpTc").oninput=e=>{c.tcolor=e.target.value;re()};
+ $("#cmpTs").oninput=e=>{c.tsize=+e.target.value;e.target.previousElementSibling.querySelector("em").textContent=e.target.value+"%";cmpRedraw()};$("#cmpTs").onchange=()=>changed();
+ $("#cmpBadge").onchange=e=>{c.badge=e.target.checked;re()};$("#cmpBt").oninput=e=>{c.badgeText=e.target.value;re()};$("#cmpBrand").onchange=e=>{c.brand=e.target.checked;re()};
+ const full=async()=>drawComp(document.createElement("canvas"),1);
+ $("#cmpPng").onclick=async()=>{const cv=await full();cv.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=((c.title||"合成圖").replace(/[\\/:*?"<>|]/g,"")||"合成圖")+"-"+c.size+".png";document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},800)},"image/png")};
+ $("#cmpHero").onclick=async()=>{const cv=await full(),k=Math.min(1,1400/cv.width),o=document.createElement("canvas");o.width=Math.round(cv.width*k);o.height=Math.round(cv.height*k);o.getContext("2d").drawImage(cv,0,0,o.width,o.height);
+  S.settings.heroImg=o.toDataURL("image/jpeg",.88);S.settings.layout="promo";dmDirty=true;changed();toast("已放進 DM「活動型」，到「版面」可以看")};
+ $("#cmpSetP").onclick=async()=>{const pid=$("#cmpToP").value;if(!pid){alert("請先選商品");return}const p=S.products.find(x=>x.id===pid);if(p.img&&!confirm("取代「"+p.name+"」目前的照片？"))return;
+  const cv=await full(),k=Math.min(1,1600/Math.max(cv.width,cv.height)),o=document.createElement("canvas");o.width=Math.round(cv.width*k);o.height=Math.round(cv.height*k);o.getContext("2d").drawImage(cv,0,0,o.width,o.height);
+  p.img=o.toDataURL("image/jpeg",.88);if(p.crop)delete p.crop.img;changed(true);toast("已設為「"+p.name+"」的照片")};
+ cmpStage(true)}
 
 /* ---------- navigation ---------- */
 let MOD="pos",dmDirty=true;
-const NAV=[["pos","收銀",'<path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3M8 12h3M8 16h6"/>'],["inv","庫存",'<path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/>'],["in","進貨",'<path d="M12 4v12M7 11l5 5 5-5M5 20h14"/>'],["rep","報表",'<path d="M5 20V10M10 20V5M15 20v-8M20 20H3"/>'],["dm","DM",'<path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/>']];
+const NAV=[["pos","收銀",'<path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3M8 12h3M8 16h6"/>'],["inv","庫存",'<path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/>'],["in","進貨",'<path d="M12 4v12M7 11l5 5 5-5M5 20h14"/>'],["rep","報表",'<path d="M5 20V10M10 20V5M15 20v-8M20 20H3"/>'],["ev","活動",'<path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/>'],["dm","DM",'<path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h7"/>']];
 function drawNav(){$("#nav").innerHTML='<div class="nlogo"><span class="lg w"></span></div>'+NAV.map(([k,n,d])=>'<button data-m="'+k+'" class="'+(MOD===k?"on":"")+'"><svg class="si" viewBox="0 0 24 24" aria-hidden="true">'+d+'</svg>'+n+'</button>').join("")+'<span class="netp" id="netp"></span>';
  $("#nav").querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>go(b.dataset.m));netState()}
 function go(m){if(!NAV.some(n=>n[0]===m))m="pos";MOD=m;try{localStorage.setItem("fox-stall-mod",m)}catch(_){}
  document.querySelectorAll(".mod").forEach(x=>x.hidden=x.id!=="m-"+m);
  $("#nav").querySelectorAll("[data-m]").forEach(b=>b.classList.toggle("on",b.dataset.m===m));
  if(m==="dm"){renderTab();if(dmDirty){dmDirty=false;render()}}else redraw()}
-function redraw(){({pos:drawPos,inv:drawInv,in:drawIn,rep:drawRep})[MOD]&&({pos:drawPos,inv:drawInv,in:drawIn,rep:drawRep})[MOD]()}
+function redraw(){({pos:drawPos,inv:drawInv,in:drawIn,rep:drawRep,ev:drawEv})[MOD]&&({pos:drawPos,inv:drawInv,in:drawIn,rep:drawRep,ev:drawEv})[MOD]()}
 function netState(){const el=$("#netp");if(!el)return;const sw=!!(navigator.serviceWorker&&navigator.serviceWorker.controller);
  el.className="netp"+(sw?" on":"");el.textContent=(navigator.onLine?"線上":"離線中")+(sw?" · 可離線":location.protocol==="file:"?" · 本機檔":"")}
 
@@ -1215,9 +1513,9 @@ function dayStart(){const d=new Date();d.setHours(0,0,0,0);return+d}
 const todaySales=()=>S.sales.filter(s=>!s.void&&s.t>=dayStart());
 function addCart(p,d){if(d>0&&p.stock!=null&&(POS.cart[p.id]||0)+d>p.stock){toast("「"+p.name+"」只剩 "+Math.max(0,p.stock)+" 件");return}
  const q=Math.max(0,(POS.cart[p.id]||0)+d);if(q)POS.cart[p.id]=q;else delete POS.cart[p.id];drawPos()}
-function drawPos(){const st=S.settings,el=$("#m-pos"),ls=cartLines(),sub=sumL(ls),dc=discountFor(sub),tot=sub-dc.d,cnt=ls.reduce((a,l)=>a+l.qty,0),today=todaySales().reduce((a,s)=>a+s.total,0);
+function drawPos(){const st=S.settings,el=$("#m-pos"),ls=cartLines(),sub=sumL(ls),dc=discountFor(ls),tot=sub-dc.d,cnt=ls.reduce((a,l)=>a+l.qty,0),today=todaySales().reduce((a,s)=>a+s.total,0);
  if(!POS.pay||!st.pays.includes(POS.pay))POS.pay=st.pays[0]||"現金";
- const head='<div class="posh"><span class="lg"></span><div class="ev"><b>'+esc(st.event||"尚未設定活動")+(st.booth?' · 攤位 '+esc(st.booth):"")+'</b><small>'+esc(st.date||"到 DM →「攤位活動」填寫")+'</small><small class="upd" data-upd>'+esc(badgeText())+'</small></div><div class="tot"><small>今日營收</small><b>'+fmtM(today)+'</b></div></div>';
+ const head='<div class="posh"><span class="lg"></span><div class="ev"><b>'+esc(st.event||"尚未設定活動")+(st.booth?' · 攤位 '+esc(st.booth):"")+'</b><small>'+esc(st.date||"到「活動」頁設定場次")+'</small><small class="upd" data-upd>'+esc(badgeText())+'</small></div><div class="tot"><small>今日營收</small><b>'+fmtM(today)+'</b></div></div>';
  let body="",foot="";
  if(POS.view==="grid"){
   const list=S.products.filter(p=>!POS.cat||p.cat===POS.cat).sort(byCat);
@@ -1233,7 +1531,7 @@ function drawPos(){const st=S.settings,el=$("#m-pos"),ls=cartLines(),sub=sumL(ls
   const quick=[...new Set([tot,Math.ceil(tot/100)*100,Math.ceil(tot/500)*500,Math.ceil(tot/1000)*1000])].filter(v=>v>=tot).slice(0,4);
   body='<div class="row" style="gap:8px"><button class="xpill" id="back">‹ 繼續選商品</button></div>'+
   '<ul class="lines">'+ls.map(l=>'<li><div>'+esc(l.name)+'<small>'+fmtM(l.price)+(l.p&&l.p.dmPrice?" · 活動價":"")+'</small></div>'+(l.p?'<div class="q"><button data-lq="'+esc(l.p.id)+'" data-d="-1">−</button><b>'+l.qty+'</b><button data-lq="'+esc(l.p.id)+'" data-d="1">＋</button></div>':'<button class="xpill" data-cx="'+l.ci+'">移除</button>')+'<b>'+fmtM(l.price*l.qty).replace(CS(),"")+'</b></li>').join("")+'</ul>'+
-  (dc.d?'<div class="disc"><span>優惠：'+esc(dc.lab)+'</span><b>−'+fmtM(dc.d).replace(CS(),"")+'</b></div>':"")+
+  dc.list.map(x=>'<div class="disc"><span>優惠：'+esc(x.lab)+'</span><b>−'+fmtM(x.amt).replace(CS(),"")+'</b></div>').join("")+
   '<div class="due"><small>應收 TOTAL</small><b>'+fmtM(tot)+'</b></div>'+
   '<div class="payg">'+st.pays.map(p=>'<button data-pay="'+esc(p)+'" class="'+(POS.pay===p?"on":"")+'">'+esc(p)+'</button>').join("")+'</div>'+
   (cash?'<div class="cash">'+quick.map(v=>'<button data-qv="'+v+'">'+(v===tot?"剛好":fmtM(v).replace(CS(),"$"))+'</button>').join("")+'</div>'+
@@ -1272,7 +1570,7 @@ function finishSale(tot,sub,dc){const ls=cartLines();if(!ls.length)return;const 
  st.posNo=(st.posNo||0)+1;
  const s={id:uid("s"),no:st.posNo,t:Date.now(),ev:st.event||"",date:st.date||"",booth:st.booth||"",cur:st.cur,
   lines:ls.map(l=>({pid:l.p?l.p.id:"",name:l.name,sku:l.p?l.p.sku||"":"",qty:l.qty,price:l.price,cost:l.p?num(l.p.cost)||0:0})),
-  sub,disc:dc.d,total:tot,pay:POS.pay,recv,chg:recv-tot,void:false};
+  sub,disc:dc.d,discs:dc.list,evId:curEv().id,total:tot,pay:POS.pay,recv,chg:recv-tot,void:false};
  ls.forEach(l=>{if(l.p)stockMove(l.p,"sale",-l.qty,{sale:s.id,note:"#"+pad3(s.no)})});
  S.sales.unshift(s);POS.last=s;POS.cart={};POS.custom=[];POS.recv="";POS.view="done";changed();drawPos()}
 function voidSale(s){if(!s||s.void)return false;if(!confirm("撤銷 #"+pad3(s.no)+"（"+fmtM(s.total)+"）？庫存會加回去。"))return false;
@@ -1341,31 +1639,6 @@ function moveLog(list){if(!list.length)return'<div class="xempty">還沒有異�
  const lastOf={};S.moves.forEach(m=>{if(!(m.pid in lastOf))lastOf[m.pid]=m.id});
  return'<ul class="xlog">'+list.map(m=>'<li><i class="'+(m.type==="in"?"k":"")+'">'+MOVE_T[m.type][0]+'</i><div>'+esc(m.name)+'<small>'+(dstr(m.t)===dstr(Date.now())?"今天 ":dstr(m.t)+" ")+tm(m.t)+(m.cost?" · 成本 "+esc(m.cost):"")+(m.note?" · "+esc(m.note):"")+' · 庫存 '+(m.before==null?"—":m.before)+'→'+m.after+'</small></div><b>'+(m.qty>0?"+":"")+m.qty+'</b>'+(lastOf[m.pid]===m.id&&m.type!=="sale"&&m.type!=="void"?'<button class="x" data-mu="'+esc(m.id)+'">刪除</button>':"<span></span>")+'</li>').join("")+'</ul>'}
 
-/* ---------- 報表 ---------- */
-const REP={k:"today"};
-function repKeys(){const seen={},out=[];S.sales.forEach(s=>{const k=s.ev+"|"+s.date;if(!seen[k]&&(s.ev||s.date)){seen[k]=1;out.push([k,s.ev||"未命名活動",s.date])}});return out}
-function repSales(){const k=REP.k;return S.sales.filter(s=>!s.void&&(k==="all"||(k==="today"?s.t>=dayStart():(s.ev+"|"+s.date)===k)))}
-function drawRep(){const el=$("#m-rep"),keys=repKeys(),ss=repSales();
- const rev=ss.reduce((a,s)=>a+s.total,0),units=ss.reduce((a,s)=>a+s.lines.reduce((b,l)=>b+l.qty,0),0),cost=ss.reduce((a,s)=>a+s.lines.reduce((b,l)=>b+(l.cost||0)*l.qty,0),0),gp=rev-cost;
- const hrs={};ss.forEach(s=>{const h=new Date(s.t).getHours();hrs[h]=(hrs[h]||0)+s.total});const hk=Object.keys(hrs).map(Number);
- const h0=hk.length?Math.min(...hk,10):10,h1=hk.length?Math.max(...hk,17):17,hmax=Math.max(1,...Object.values(hrs));
- const rk={};ss.forEach(s=>s.lines.forEach(l=>{rk[l.name]=(rk[l.name]||0)+l.price*l.qty}));const top=Object.entries(rk).sort((a,b)=>b[1]-a[1]).slice(0,6),tmax=top.length?top[0][1]:1;
- const pays={};ss.forEach(s=>pays[s.pay]=(pays[s.pay]||0)+s.total);
- const hours=[];for(let h=h0;h<=h1;h++)hours.push(h);
- el.innerHTML='<div class="xw"><div class="xh"><span class="lg"></span><div><b>報表</b><small>REPORT</small><small class="upd" data-upd>'+esc(badgeText())+'</small></div><div class="r"><button class="xpill" id="csvS">匯出 CSV</button></div></div><div class="xb">'+
- '<div class="xchips"><button data-rk="today" class="'+(REP.k==="today"?"on":"")+'">今天</button>'+keys.map(([k,n,d])=>'<button data-rk="'+esc(k)+'" class="'+(REP.k===k?"on":"")+'">'+esc(n)+(d?" · "+esc(d):"")+'</button>').join("")+'<button data-rk="all" class="'+(REP.k==="all"?"on":"")+'">全部</button></div>'+
- '<div class="xstats"><div class="k"><b>'+fmtM(rev).replace(CS(),"")+'</b><small>營業額 '+esc(S.settings.cur)+'</small></div><div><b>'+ss.length+'</b><small>筆數</small></div><div><b>'+(ss.length?Math.round(rev/ss.length).toLocaleString("en-US"):0)+'</b><small>客單價</small></div></div>'+
- '<div class="xstats"><div><b>'+Math.round(gp).toLocaleString("en-US")+'</b><small>毛利</small></div><div><b>'+(rev?Math.round(gp/rev*100):0)+'%</b><small>毛利率</small></div><div><b>'+units+'</b><small>售出件數</small></div></div>'+
- (ss.length?'<div class="xhd">每小時營業額</div><div class="bars">'+hours.map(h=>{const v=hrs[h]||0;return'<div><i class="'+(v===hmax?"h":"")+'" style="height:'+Math.round(v/hmax*92)+'%"></i></div>'}).join("")+'</div><div class="axis">'+hours.map(h=>'<span>'+h+'</span>').join("")+'</div>'+
- '<div class="xhd">熱賣排行</div><ul class="rk">'+top.map(([n,v])=>'<li><span>'+esc(n)+'</span><span class="b"><i style="width:'+Math.round(v/tmax*100)+'%"></i></span><b>'+Math.round(v).toLocaleString("en-US")+'</b></li>').join("")+'</ul>'+
- '<div class="xhd">付款方式</div><div class="pays2">'+Object.entries(pays).map(([k,v])=>'<div>'+esc(k)+'<b>'+Math.round(v).toLocaleString("en-US")+'</b></div>').join("")+'</div>':'<div class="xempty">這個範圍還沒有銷售。到「收銀」結帳後就會出現。</div>')+
- '<p class="note" style="margin:0">毛利＝實收 − 成本（成本取結帳當下的商品成本）。已撤銷的交易不計入。</p>'+
- saleLog(S.sales.filter(s=>REP.k==="all"||(REP.k==="today"?s.t>=dayStart():(s.ev+"|"+s.date)===REP.k)).slice(0,60),"交易紀錄")+'</div></div>';
- el.querySelectorAll("[data-rk]").forEach(b=>b.onclick=()=>{REP.k=b.dataset.rk;drawRep()});
- $("#csvS").onclick=()=>{const rows=[["單號","時間","活動","日期","攤位","商品","編號","數量","單價","小計","成本","付款","整筆折扣","整筆實收","狀態"]];
-  S.sales.filter(s=>REP.k==="all"||(REP.k==="today"?s.t>=dayStart():(s.ev+"|"+s.date)===REP.k)).slice().reverse().forEach(s=>s.lines.forEach((l,i)=>rows.push([pad3(s.no),new Date(s.t).toLocaleString("zh-TW"),s.ev,s.date,s.booth||"",l.name,l.sku,l.qty,l.price,l.price*l.qty,l.cost,s.pay,i?"":s.disc,i?"":s.total,s.void?"已撤銷":""])));
-  download("銷售紀錄-"+dstr(Date.now())+".csv","﻿"+rows.map(r=>r.map(csvCell).join(",")).join("\r\n"),"text/csv")};
- bindLog(el)}
 /* CSV cells: quote, and neutralise leading = + - @ so a spreadsheet never runs them as formulas */
 function csvCell(v){v=String(v==null?"":v);if(/^[=+\-@\t\r]/.test(v)&&!/^-?\d+(\.\d+)?$/.test(v))v="'"+v;return/[",\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}
 
@@ -1393,7 +1666,7 @@ function joinCode(){if(!cloudOn())return"";const m=CLOUD.url.match(/^https:\/\/s
 function parseCode(s){s=String(s||"").trim().replace(/^.*#c=/,"");let m=s.match(/^fx1\.([\w-]{20,})\.([\w-]{12,})$/i);if(m)return{url:"https://script.google.com/macros/s/"+m[1]+"/exec",token:m[2]};
  m=s.match(/^(https?:\/\/[^#\s]+)#([\w-]{12,})$/i);if(m&&cloudUrlOk(m[1]))return{url:m[1],token:m[2]};
  if(cloudUrlOk(s)&&CLOUD.token)return{url:s,token:CLOUD.token};return null}
-const appUrl=()=>S.settings.appUrl||(location.protocol==="https:"?location.origin+location.pathname:"");
+const appUrl=()=>S.settings.appUrl||(location.protocol==="https:"?location.origin+location.pathname:"https://turtie1668-debug.github.io/stall-toolbox/");
 const joinLink=()=>appUrl()&&cloudOn()?appUrl().replace(/#.*$/,"")+"#c="+joinCode():"";
 
 async function cloudCall(body){
