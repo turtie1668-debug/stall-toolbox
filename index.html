@@ -398,6 +398,89 @@ img.lgi{display:block;flex:none;width:9mm;height:9mm;object-fit:contain}
 .empty{flex:1;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:8pt;border:.4mm dashed #cfcfca}
 
 
+/* 商品照片編輯 */
+.phs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px;margin-bottom:10px}
+.phs1{min-width:0;display:flex;flex-direction:column;gap:4px}
+.pv4{position:relative;aspect-ratio:4/3;background:var(--bg2);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center;color:#b7b7b1}
+.pv4 img{position:absolute;inset:0;width:100%;height:100%;user-select:none;-webkit-user-select:none}
+.pv4 svg{width:40%;height:40%}
+.pv4 .plus{font-size:1.4rem;color:#b7b7b1}
+.pv4.crop{cursor:grab;touch-action:none}
+.pv4.crop.drag{cursor:grabbing;outline:1px dashed #111}
+.phb{display:flex;align-items:center;gap:3px;flex-wrap:wrap}
+.phb b{font-size:.72rem;flex-basis:100%}
+.phb .btn{padding:3px 7px;cursor:pointer}
+.cropc{display:flex;align-items:center;gap:4px;font-size:.68rem;color:var(--muted);min-width:0}
+.cropc span{white-space:nowrap}
+.cropc input[type=range]{flex:1;min-width:0;width:auto;padding:0;height:18px;accent-color:#111}
+.cropc output{min-width:2.8em;text-align:right;color:#111;font-weight:700}
+@media(max-width:520px){.phs{grid-template-columns:1fr 1fr}}
+/* 贈品編輯 */
+.gift{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:8px;align-items:center;margin-bottom:8px}
+.gth{width:56px;height:56px;border:1px dashed #9a9a96;display:grid;place-items:center;overflow:hidden;cursor:pointer;font-size:.68rem;color:var(--muted);background:var(--bg2)}
+.gth img{width:100%;height:100%;object-fit:cover}
+.gf{display:flex;flex-direction:column;gap:4px;min-width:0}
+.gf input{width:100%;border:1px solid #cfcfca;background:#fff;padding:6px 8px;border-radius:0;font-size:.85rem}
+.gf input:focus{border-color:#111;outline:none}
+/* 庫存排序 */
+.xsort{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.xsort label{display:flex;align-items:center;gap:6px;min-width:0;font-size:.76rem;color:var(--muted)}
+.xsort span{white-space:nowrap}
+.xsort select{flex:1;min-width:0;border:1px solid #cfcfca;background:#fff;padding:7px 8px;border-radius:0;font-size:.85rem;color:#111}
+/* DM 照片 */
+.fc .img.mp{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:.4mm;place-items:stretch;background:#111}
+.fc .img.mp>span{position:relative;overflow:hidden;background:var(--bg2);min-height:0}
+.fc .img.mp.c2{grid-template-rows:1fr}.fc .img.mp.c4{grid-template-rows:repeat(3,1fr)}.fc .img.mp>span:first-child{grid-row:1/-1}
+.pl.wt{align-items:center}
+.pl.wt .ld{transform:none}
+.pl .pth{width:var(--fth,7mm);height:var(--fth,7mm);flex:none;position:relative;overflow:hidden;background:var(--bg2);display:grid;place-items:center;color:#b7b7b1}
+.pl .pth svg{width:60%;height:60%}
+.pl .pth img,.pr2 .th img,.pk2 .ths .tb img{position:absolute;inset:0;width:100%;height:100%}
+.pr2{grid-template-columns:var(--lth,12mm) minmax(0,1fr) auto}
+.pr2 .th{width:var(--lth,12mm);height:var(--lth,12mm)}
+.pk2 .ths .tb{position:relative;width:13mm;height:13mm;background:var(--bg2);overflow:hidden;display:grid;place-items:center;color:#b7b7b1;border:.2mm solid var(--line)}
+.pk2 .ths .tb svg{width:60%;height:60%}
+.gfs{display:flex;flex-wrap:wrap;gap:1.4mm 2.6mm;margin-top:1.2mm}
+.gfs figure{margin:0;display:flex;align-items:center;gap:1.4mm;min-width:0}
+.gfs span{position:relative;width:10mm;height:10mm;flex:none;border:.25mm solid #111;background:#fff;overflow:hidden}
+.gfs img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gfs figcaption{font:700 6.4pt/1.25 var(--f-body);max-width:32mm}
+.gfs em{display:block;font:500 5.4pt var(--f-body);font-style:normal;color:var(--muted)}
+.poster .gfs span{width:13mm;height:13mm}
+.poster .gfs figcaption{font-size:8pt}
+.pk2.gfc{grid-column:1/-1}
+.pk2.gfc .bd{display:block}
+.pk2.gfc .gfs{margin:0}
+.pk2.gfc .gfs span{width:12mm;height:12mm}
+/* DM 主打大卡 */
+.fbs{flex:none;display:flex;flex-direction:column;gap:2.4mm}
+.fb{display:flex;border:.5mm solid #111;min-width:0;background:#fff;overflow:hidden}
+.fbp{width:var(--fbw,60mm);flex:none;display:flex;flex-direction:column;gap:.8mm;padding:.8mm;border-right:.35mm solid #111}
+.fbm{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--bg2);display:grid;place-items:center;color:#b7b7b1}
+.fbm svg{width:36%;height:36%}
+.fbm img,.fbd span img{position:absolute;inset:0;width:100%;height:100%}
+.fbd{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8mm}
+.fbd span{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--bg2)}
+.fbt{position:absolute;left:0;top:0;display:flex;z-index:1}
+.fbt b{background:#111;color:#fff;font:900 6pt/1 var(--f-body);padding:1mm 2mm;letter-spacing:.12em;white-space:nowrap}
+.fbt i{width:6mm;background:var(--hatch);border:.3mm solid #111}
+.fbx{flex:1;min-width:0;padding:2.4mm 3mm;display:flex;flex-direction:column;gap:1mm}
+.fbx .mt{font:700 5.4pt var(--f-display);letter-spacing:.08em;color:var(--muted)}
+.fbx h3{margin:0;font:900 12pt/1.25 var(--f-body)}
+.fbx .en{font:500 5.6pt var(--f-display);letter-spacing:.08em;color:var(--muted)}
+.fbx .hl{font-size:7pt;font-weight:700;line-height:1.5}
+.fbx .ds{font-size:6.6pt;line-height:1.6;color:#2b2b28;overflow:hidden;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;white-space:pre-line}
+.fbx .gap{flex:1}
+.fbx .tg2{align-self:flex-start;background:#111;color:#fff;font:700 5.8pt/1.6 var(--f-body);padding:0 1.6mm}
+.fbx .mat{display:flex;gap:3mm;font-size:6.4pt;font-weight:500;border-bottom:.2mm solid var(--line);padding-bottom:.8mm}
+.fbx .mat span{color:var(--muted)}
+.fbx .pr{display:flex;align-items:baseline;gap:1.6mm;flex-wrap:wrap}
+.fbx .pr .now{font:900 15pt/1 var(--f-display)}
+.fbx .pr .now small{font-size:9pt;margin-right:.6mm}
+.fbx .pr s{font:500 6pt var(--f-display);color:var(--muted)}
+.fb.so h3,.fb.so .pr .now{text-decoration:line-through;color:#9a9a96}
+.fbs.n2 .fbx h3{font-size:10pt}.fbs.n2 .fbx .ds{-webkit-line-clamp:4}.fbs.n2 .fbx .pr .now{font-size:12pt}
+.fbs.n3 .fbx{padding:1.6mm 2.4mm;gap:.6mm}.fbs.n3 .fbx h3{font-size:8.6pt}.fbs.n3 .fbx .hl{font-size:6.4pt}.fbs.n3 .fbx .ds{-webkit-line-clamp:2;font-size:6pt}.fbs.n3 .fbx .pr .now{font-size:11pt}.fbs.n3 .fbt b{font-size:5pt;padding:.7mm 1.4mm}
 /* DM 活動型 */
 .promo .dbd{gap:3.2mm}
 .phimg{flex:none;border:.5mm solid #111;overflow:hidden;height:56mm}
@@ -833,6 +916,7 @@ function normalize(d){const b=SAMPLE();d=d&&typeof d==="object"?d:{};const ds=d.
  if(!Array.isArray(st.pays))st.pays=b.settings.pays.slice();
  if(!Array.isArray(st.links))st.links=[];
  const okImg=v=>typeof v==="string"&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+\/=]+$/.test(v);if(st.heroImg&&!okImg(st.heroImg))st.heroImg="";if(st.comp&&typeof st.comp==="object"){["L","R"].forEach(k=>{const l=st.comp[k];if(l&&l.src&&!okImg(l.src))l.src=""})}else delete st.comp;
+ st.gifts=(Array.isArray(st.gifts)?st.gifts:[]).filter(g=>g&&typeof g==="object").slice(0,6).map(g=>({id:String(g.id||uid("g")),n:String(g.n||"").slice(0,30),c:String(g.c||"").slice(0,30),img:okImg(g.img)?g.img:""}));st.featThumb=nb(st.featThumb,7,5,14);if(st.featStyle!=="grid")st.featStyle="big";st.listThumb=nb(st.listThumb,12,8,30);
  /* older DM files: their 滿額 text stays in 其他優惠, so start without rules */
  if(!Array.isArray(ds.rules))st.rules=Array.isArray(d.products)?[]:b.settings.rules;
  st.rules=st.rules.filter(r=>r&&typeof r==="object").map(r=>({min:nb(r.min,0,0,1e9),off:nb(r.off,0,0,1e9),rep:!!r.rep}));
@@ -840,7 +924,8 @@ function normalize(d){const b=SAMPLE();d=d&&typeof d==="object"?d:{};const ds=d.
  st.promos=st.promos.filter(p=>p&&typeof p==="object"&&PROMO_RANK[p.type]!=null).map(p=>({id:String(p.id||uid("pr")),type:p.type,on:p.on!==false,name:String(p.name||"").slice(0,60),scope:String(p.scope||""),rep:!!p.rep,min:nb(p.min,0,0,1e9),off:nb(p.off,0,0,1e9),rate:nb(p.rate,0,0,100),n:nb(p.n,0,0,999),m:nb(p.m,0,0,999),price:nb(p.price,0,0,1e9),items:Array.isArray(p.items)?p.items.map(String):[]}));if(st.promoMode!=="stack")st.promoMode="best";
  st.posNo=Math.max(0,parseInt(st.posNo)||0);st.safeDef=nb(st.safeDef,5,0,1e6);
  const products=(Array.isArray(d.products)?d.products:b.products).filter(p=>p&&typeof p==="object").map(p=>{p.id=String(p.id||uid());
-  p.stock=p.stock===""||p.stock==null||!isFinite(+p.stock)?null:Math.round(+p.stock);p.safe=p.safe==null||!isFinite(+p.safe)?null:Math.max(0,+p.safe);return p});
+  p.stock=p.stock===""||p.stock==null||!isFinite(+p.stock)?null:Math.round(+p.stock);p.safe=p.safe==null||!isFinite(+p.safe)?null:Math.max(0,+p.safe);
+  ["img2","img3","img4"].forEach(k=>{if(p[k]&&!okImg(p[k]))delete p[k]});if(p.crop&&typeof p.crop==="object"){const c={};["img","img2","img3","img4"].forEach(k=>{const v=p.crop[k];if(v&&typeof v==="object")c[k]={x:nb(v.x,50,-50,150),y:nb(v.y,50,-50,150),z:nb(v.z,1,.2,5)}});p.crop=c}else delete p.crop;if(p.dmN!=null)p.dmN=Math.max(1,Math.min(4,parseInt(p.dmN)||1));if(p.fit!=="contain")delete p.fit;return p});
  return{settings:st,vendors:Array.isArray(d.vendors)?d.vendors:b.vendors,cats:Array.isArray(d.cats)?d.cats:b.cats,products,
   moves:Array.isArray(d.moves)?d.moves:[],sales:Array.isArray(d.sales)?d.sales:[],events:(Array.isArray(d.events)?d.events:Array.isArray(d.products)?[]:b.events).filter(e=>e&&typeof e==="object").map(e=>({id:String(e.id||uid("e")),ev:String(e.ev||""),date:String(e.date||""),booth:String(e.booth||""),hall:String(e.hall||""),fee:nb(e.fee,0,0,1e9),target:nb(e.target,0,0,1e12),costs:(Array.isArray(e.costs)?e.costs:[]).map(c=>({n:String((c&&c.n)||"").slice(0,40),a:nb(c&&c.a,0,0,1e9)}))})),meta:Object.assign({},d.meta&&typeof d.meta==="object"?d.meta:{})}}
 function download(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:type+";charset=utf-8"}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
@@ -852,6 +937,88 @@ const DMP=p=>S.settings.cur==="TWD"?p.dmPrice:"";
 const catById=id=>S.cats.find(c=>c.id===id)||{id:"",name:"未分類",glyph:"他",icon:"b"};
 function logo(cls){return S.settings.logo?'<img class="lgi" src="'+esc(S.settings.logo)+'" alt="">':'<span class="lg '+(cls||"")+'" role="img" aria-label="logo"></span>'}
 function readImg(file,max,png){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(png?c.toDataURL("image/png"):c.toDataURL("image/jpeg",.86))};im.onerror=rej;im.src=fr.result};fr.onerror=rej;fr.readAsDataURL(file)})}
+
+/* ---------- 商品照片：主圖＋2 張，每張各自的位置（x/y 焦點 %）與縮放（z，1＝剛好填滿外框） ---------- */
+const PK=["img","img2","img3","img4"];
+const photoKeys=p=>PK.filter(k=>p&&p[k]);
+function cropOf(p,k){const c=((p&&p.crop)||{})[k]||{};return{x:isFinite(c.x)?+c.x:50,y:isFinite(c.y)?+c.y:50,z:isFinite(c.z)&&c.z>0?+c.z:1}}
+function cropCss(p,k){const c=cropOf(p,k),x=c.x.toFixed(1),y=c.y.toFixed(1);return"object-fit:"+(p.fit==="contain"?"contain":"cover")+";object-position:"+x+"% "+y+"%;transform-origin:"+x+"% "+y+"%;"+(c.z!==1?"transform:scale("+c.z.toFixed(3)+");":"")}
+const pimg=(p,k)=>'<img src="'+esc(p[k])+'" alt="" style="'+cropCss(p,k)+'">';
+const dmPhotos=p=>photoKeys(p).slice(0,Math.max(1,Math.min(4,parseInt(p.dmN)||1)));
+/* 主打大卡：左邊主圖＋最多 3 張細節照（全部 4:3，和編輯預覽同比例），右邊文字 */
+function bigCard(p){const c=catById(p.cat),ks=dmPhotos(p),st=S.settings,main=ks[0],det=ks.slice(1);
+ const meta=[p.sku?esc(p.sku):"",p.date?'發售 '+esc(p.date):""].filter(Boolean).join("　");
+ return'<article class="fb'+(p.soldout?" so":"")+'"><div class="fbp"><div class="fbm">'+(main?pimg(p,main):ico(c.icon))+'<span class="fbt"><b>'+esc(p.badge||"主打推薦")+'</b><i></i></span>'+(p.soldout?'<div class="sold"><span>完售</span></div>':"")+'</div>'+
+ (det.length?'<div class="fbd">'+det.map(k=>'<span>'+pimg(p,k)+'</span>').join("")+'</div>':"")+'</div>'+
+ '<div class="fbx">'+(meta?'<div class="mt">'+meta+'</div>':"")+'<h3>'+esc(p.name)+'</h3>'+(st.showEn&&p.en?'<div class="en">'+esc(p.en)+'</div>':"")+
+ (p.headline?'<div class="hl">'+esc(p.headline)+'</div>':"")+(p.desc?'<div class="ds">'+esc(p.desc)+'</div>':"")+'<div class="gap"></div>'+
+ (p.dmNote?'<span class="tg2">'+esc(p.dmNote)+'</span>':"")+(p.material?'<div class="mat"><span>材質</span>'+esc(p.material)+'</div>':"")+'<div class="pr">'+priceHTML(p)+'</div></div></article>'}
+const FB_W={1:72,2:50,3:34};
+function featBlock(fe){const st=S.settings;if(!fe.length)return"";
+ return st.featStyle==="grid"?'<div class="feat n'+fe.length+'">'+fe.map(featCard).join("")+'</div>':'<div class="fbs n'+fe.length+'" style="--fbw:'+FB_W[Math.min(3,fe.length)]+'mm">'+fe.map(bigCard).join("")+'</div>'}
+
+const pth=(p,cls)=>{const k=photoKeys(p)[0];return'<span class="'+cls+'">'+(k?pimg(p,k):ico(catById(p.cat).icon))+'</span>'};
+function photoEd(p){const c=catById(p.cat);
+ const slot=(k,lab)=>{const has=!!p[k],cr=cropOf(p,k);
+  return'<div class="phs1" data-ph="'+k+'"><div class="pv4'+(has?" crop":"")+'"'+(has?' title="拖曳移動・滾輪縮放・雙擊重設"':"")+'>'+(has?'<img src="'+esc(p[k])+'" alt="" draggable="false" style="'+cropCss(p,k)+'">':k==="img"?ico(c.icon):'<span class="plus">＋</span>')+'</div>'+
+  '<div class="phb"><b>'+lab+'</b><label class="btn sm ghost">'+(has?"換":"上傳")+'<input type="file" accept="image/*" data-up="'+k+'" hidden></label>'+(has&&k!=="img"?'<button class="btn sm ghost" data-main="'+k+'" title="設為主圖">主圖</button>':"")+(has?'<button class="btn sm warn" data-rm="'+k+'" aria-label="移除">✕</button>':"")+'</div>'+
+  (has?'<div class="cropc"><span>縮放</span><input type="range" min="20" max="500" step="2" data-z value="'+Math.round(cr.z*100)+'"><output>'+Math.round(cr.z*100)+'%</output></div>'+
+   '<div class="cropc"><span>左右</span><input type="range" min="-50" max="150" step="1" data-cx value="'+Math.round(cr.x)+'"></div><div class="cropc"><span>上下</span><input type="range" min="-50" max="150" step="1" data-cy value="'+Math.round(cr.y)+'"></div>':"")+'</div>'};
+ const n=photoKeys(p).length,dn=Math.max(1,Math.min(4,parseInt(p.dmN)||1));
+ return'<div class="phs">'+slot("img","主圖")+slot("img2","細節 2")+slot("img3","細節 3")+slot("img4","細節 4")+'</div>'+
+ '<div class="two"><label class="f"><span>主打卡放幾張照片（目前有 '+n+' 張）</span><select id="eDmN">'+[1,2,3,4].map(i=>'<option value="'+i+'"'+(dn===i?" selected":"")+'>'+i+' 張</option>').join("")+'</select></label>'+
+ '<label class="f"><span>照片呈現</span><select id="eFit"><option value="cover">填滿（裁切）</option><option value="contain"'+(p.fit==="contain"?" selected":"")+'>完整（留白）</option></select></label></div>'+
+ '<p class="note" style="margin-top:-4px">預覽框＝DM 主打卡上每張照片的實際比例（4:3）。拖曳照片移動，滑桿或滾輪縮放（20～500%），左右上下可超出邊界做留白，雙擊重設。價目表小圖用主圖的同一個位置與縮放。</p>'}
+function bindPhotos(p,re){const box=document.querySelector(".ed .phs");if(!box)return;const root=box.parentNode;
+ const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+ const pack=()=>{const keep=PK.filter(k=>p[k]).map(k=>[p[k],(p.crop||{})[k]]);const c={};PK.forEach(k=>delete p[k]);keep.forEach(([s,cr],i)=>{p[PK[i]]=s;if(cr)c[PK[i]]=cr});if(Object.keys(c).length)p.crop=c;else delete p.crop};
+ root.querySelectorAll("[data-up]").forEach(inp=>inp.onchange=async e=>{const f=e.target.files[0],k=inp.dataset.up;if(!f)return;try{p[k]=await readImg(f,900)}catch(_){alert("無法讀取這張圖片。");return}if(p.crop)delete p.crop[k];pack();changed(true);re()});
+ root.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{const k=b.dataset.rm;delete p[k];if(p.crop)delete p.crop[k];pack();changed(true);re()});
+ root.querySelectorAll("[data-main]").forEach(b=>b.onclick=()=>{const k=b.dataset.main,c=Object.assign({},p.crop||{}),a=c.img,o=c[k];const t=p.img;p.img=p[k];p[k]=t;delete c.img;delete c[k];if(o)c.img=o;if(a)c[k]=a;p.crop=c;pack();changed(true);re()});
+ const dn=$("#eDmN");if(dn)dn.onchange=e=>{p.dmN=parseInt(e.target.value)||1;changed(true)};
+ const ef=$("#eFit");if(ef)ef.onchange=e=>{if(e.target.value==="contain")p.fit="contain";else delete p.fit;changed(true);re()};
+ const apply=k=>{const sl=box.querySelector('[data-ph="'+k+'"]');if(!sl)return;const c=cropOf(p,k),im=sl.querySelector(".pv4 img");if(im)im.style.cssText=cropCss(p,k);
+  const z=sl.querySelector("[data-z]"),o=sl.querySelector(".cropc output"),cx=sl.querySelector("[data-cx]"),cy=sl.querySelector("[data-cy]");
+  if(z)z.value=Math.round(c.z*100);if(o)o.textContent=Math.round(c.z*100)+"%";if(cx)cx.value=Math.round(c.x);if(cy)cy.value=Math.round(c.y)};
+ const set=(k,patch,save)=>{const c=Object.assign(cropOf(p,k),patch);c.x=clamp(c.x,-50,150);c.y=clamp(c.y,-50,150);c.z=clamp(c.z,.2,5);
+  p.crop=p.crop||{};if(c.x===50&&c.y===50&&c.z===1)delete p.crop[k];else p.crop[k]={x:+c.x.toFixed(1),y:+c.y.toFixed(1),z:+c.z.toFixed(3)};
+  apply(k);if(save)changed()};
+ box.querySelectorAll(".phs1").forEach(sl=>{const k=sl.dataset.ph,pv=sl.querySelector(".pv4.crop"),im=pv&&pv.querySelector("img");if(!pv||!im)return;let st=null;
+  pv.addEventListener("pointerdown",e=>{if(e.button!==0)return;e.preventDefault();pv.setPointerCapture(e.pointerId);pv.classList.add("drag");
+   /* moving the focus by 1% shifts the photo by (frame − photo)/100 px */
+   const fw=pv.clientWidth,fh=pv.clientHeight,iw=im.naturalWidth||fw,ih=im.naturalHeight||fh,c=cropOf(p,k),s=(p.fit==="contain"?Math.min:Math.max)(fw/iw,fh/ih);
+   st={x0:e.clientX,y0:e.clientY,c,dw:fw-iw*s*c.z,dh:fh-ih*s*c.z}});
+  pv.addEventListener("pointermove",e=>{if(!st)return;const dx=e.clientX-st.x0,dy=e.clientY-st.y0;
+   set(k,{x:Math.abs(st.dw)>1?st.c.x+dx*100/st.dw:st.c.x,y:Math.abs(st.dh)>1?st.c.y+dy*100/st.dh:st.c.y})});
+  const end=()=>{if(!st)return;st=null;pv.classList.remove("drag");changed()};
+  pv.addEventListener("pointerup",end);pv.addEventListener("pointercancel",end);
+  pv.addEventListener("wheel",e=>{e.preventDefault();set(k,{z:cropOf(p,k).z*(e.deltaY<0?1.05:1/1.05)},true)},{passive:false});
+  pv.addEventListener("dblclick",()=>set(k,{x:50,y:50,z:1},true));
+  sl.querySelector("[data-z]").addEventListener("input",e=>set(k,{z:e.target.value/100},true));
+  sl.querySelector("[data-cx]").addEventListener("input",e=>set(k,{x:+e.target.value},true));
+  sl.querySelector("[data-cy]").addEventListener("input",e=>set(k,{y:+e.target.value},true))})}
+
+/* ---------- 贈品小圖 ---------- */
+const giftList=()=>(S.settings.gifts||[]).filter(g=>g.n||g.img);
+function giftsHTML(){const gs=giftList();if(!gs.length)return"";
+ return'<div class="gfs">'+gs.map(g=>'<figure>'+(g.img?'<span><img src="'+esc(g.img)+'" alt=""></span>':"")+'<figcaption>'+(g.c?'<em>'+esc(g.c)+'</em>':"")+esc(g.n||"贈品")+'</figcaption></figure>').join("")+'</div>'}
+const giftCard=()=>giftList().length?'<div class="pk2 gfc"><i>贈品</i><div class="bd">'+giftsHTML()+'</div></div>':"";
+function drawGifts(){const box=$("#gifts");if(!box)return;const st=S.settings;st.gifts=st.gifts||[];
+ box.innerHTML=st.gifts.map((g,i)=>'<div class="gift"><label class="gth" title="上傳贈品照片">'+(g.img?'<img src="'+esc(g.img)+'" alt="">':'<span>＋照片</span>')+'<input type="file" accept="image/*" data-gu="'+i+'" hidden></label><div class="gf"><input type="text" data-gi="'+i+'" data-gk="n" value="'+esc(g.n)+'" placeholder="贈品名稱（例：壓克力立牌）" maxlength="30"><input type="text" data-gi="'+i+'" data-gk="c" value="'+esc(g.c)+'" placeholder="條件（例：滿 1500 送）" maxlength="30"></div><button class="btn sm warn" data-gx="'+i+'" aria-label="移除">✕</button></div>').join("");
+ box.querySelectorAll("[data-gi]").forEach(x=>x.oninput=e=>{st.gifts[+x.dataset.gi][x.dataset.gk]=e.target.value;changed()});
+ box.querySelectorAll("[data-gu]").forEach(x=>x.onchange=async e=>{const f=e.target.files[0];if(!f)return;try{st.gifts[+x.dataset.gu].img=await readImg(f,400)}catch(_){alert("無法讀取這張圖片。");return}changed(true);drawGifts()});
+ box.querySelectorAll("[data-gx]").forEach(x=>x.onclick=()=>{st.gifts.splice(+x.dataset.gx,1);changed(true);drawGifts()});
+ const a=$("#addG");if(a){a.hidden=st.gifts.length>=6;a.onclick=()=>{st.gifts.push({id:uid("g"),n:"",c:"",img:""});drawGifts();const l=box.querySelector(".gift:last-child [data-gk=n]");if(l)l.focus()}}}
+
+/* ---------- 庫存排序與篩選 ---------- */
+const ISORT=[["low","庫存 少 → 多"],["high","庫存 多 → 少"],["phi","價格 高 → 低"],["plo","價格 低 → 高"],["cost","成本 高 → 低"],["name","名稱"],["cat","分類順序"],["new","最新加入"]];
+const IFIL=[["","全部商品"],["low","低庫存＋完售"],["ok","庫存充足"],["na","不追蹤庫存"],["dm","有放進 DM"],["nodm","沒放進 DM"]];
+function invSort(list){const np=p=>nowPrice(p),nul=(a,b)=>(a==null)-(b==null),nc=p=>num(p.cost);
+ const by={low:(a,b)=>nul(a.stock,b.stock)||(a.stock-b.stock),high:(a,b)=>nul(a.stock,b.stock)||(b.stock-a.stock),
+  phi:(a,b)=>nul(np(a),np(b))||(np(b)-np(a)),plo:(a,b)=>nul(np(a),np(b))||(np(a)-np(b)),cost:(a,b)=>nul(nc(a),nc(b))||(nc(b)-nc(a)),
+  name:(a,b)=>String(a.name||"").localeCompare(String(b.name||""),"zh-Hant"),cat:()=>0,new:(a,b)=>(b.order||0)-(a.order||0)}[INV.sort]||(()=>0);
+ return list.sort((a,b)=>by(a,b)||byCat(a,b))}
+const invFil=p=>{const f=INV.fil;return!f||(f==="low"?isLow(p)||isOut(p):f==="ok"?p.stock!=null&&!isLow(p)&&!isOut(p):f==="na"?p.stock==null:f==="dm"?!!p.on:f==="nodm"?!p.on:true)};
 
 /* ---------- derived lists ---------- */
 const catOrder=id=>{const i=S.cats.findIndex(c=>c.id===id);return i<0?999:i};
@@ -884,7 +1051,7 @@ function tabProd(){
 }
 /* one form for everything about a product: catalog data, prices, stock, DM and card options */
 function editor(p){const c=catById(p.cat),sec=t=>'<div class="edsec">'+t+'</div>';
- return'<div class="ed"><div class="top"><div class="pv">'+(p.img?'<img src="'+esc(p.img)+'" alt="">':ico(c.icon))+'</div><div class="row"><label class="btn sm ghost" style="cursor:pointer">換照片<input type="file" accept="image/*" id="eImg" hidden></label>'+(p.img?'<button class="btn sm warn" id="eImgX">移除照片</button>':"")+'</div></div>'+
+ return'<div class="ed">'+sec("商品照片")+photoEd(p)+
  sec("基本資料")+
  '<label class="f"><span>名稱</span><input type="text" id="eName" value="'+esc(p.name)+'"></label>'+
  '<div class="two"><label class="f"><span>英文名稱</span><input type="text" id="eEn" value="'+esc(p.en||"")+'"></label><label class="f"><span>編號</span><input type="text" id="eSku" value="'+esc(p.sku||"")+'"></label></div>'+
@@ -899,12 +1066,14 @@ function editor(p){const c=catById(p.cat),sec=t=>'<div class="edsec">'+t+'</div>
  '<label class="chk"><input type="checkbox" id="eOn"'+(p.on?" checked":"")+'> 放進 DM</label><label class="chk"><input type="checkbox" id="eFeat"'+(p.feat?" checked":"")+'> 主打（DM 放大成照片卡）</label>'+
  '<div class="two"><label class="f"><span>小註記（現場價、剩少量…）</span><input type="text" id="eNote" value="'+esc(p.dmNote||"")+'" maxlength="8"></label><label class="f"><span>主打角標</span><input type="text" id="eBadge" value="'+esc(p.badge||"")+'" maxlength="8"></label></div>'+
  '<label class="f"><span>主打一句話（主打卡片才會顯示）</span><textarea id="eHl" style="min-height:52px">'+esc(p.headline||"")+'</textarea></label>'+
+ '<label class="f"><span>商品介紹（主打大卡顯示）</span><textarea id="eDesc" style="min-height:64px">'+esc(p.desc||"")+'</textarea></label>'+
+ '<div class="two"><label class="f"><span>材質</span><input type="text" id="eMat" value="'+esc(p.material||"")+'" placeholder="光固化樹脂、ABS"></label><label class="f"><span>發售</span><input type="text" id="eDate" value="'+esc(p.date||"")+'" placeholder="2026.11"></label></div>'+
  '<div class="two"><label class="f"><span>小卡張數</span><input type="number" min="0" id="eQty" value="'+esc(p.cardQty==null?1:p.cardQty)+'"></label><label class="f"><span>小卡分類標籤（留白＝「'+esc([catById(p.cat).short||catById(p.cat).name,p.sub].filter(Boolean).join(" . "))+'」）</span><input type="text" id="eCl" value="'+esc(p.cardLabel||"")+'"></label></div>'+
  '<label class="chk"><input type="checkbox" id="eSold"'+(p.soldout?" checked":"")+'> 標示「完售」'+(S.settings.autoSold!==false?'（庫存歸零時會自動勾選）':"")+'</label>'+
  '<div class="row"><button class="btn sm" id="eDone">完成</button><div class="sp"></div><button class="btn sm warn" id="eDel">刪除此商品</button></div></div>'}
 function bindEditor(p,o){if(!p)return;o=o||{};const re=o.re||tabProd,done=o.done||(()=>{cur=null;tabProd()});
  const bind=(id,k)=>{$(id).oninput=e=>{p[k]=e.target.value;changed()}};
- bind("#eName","name");bind("#eEn","en");bind("#eSku","sku");bind("#ePrice","price");bind("#eDm","dmPrice");bind("#eCost","cost");bind("#eNote","dmNote");bind("#eBadge","badge");bind("#eHl","headline");bind("#eJPY","priceJPY");bind("#eUSD","priceUSD");bind("#eKRW","priceKRW");bind("#eSub","sub");bind("#eCl","cardLabel");
+ bind("#eName","name");bind("#eEn","en");bind("#eSku","sku");bind("#ePrice","price");bind("#eDm","dmPrice");bind("#eCost","cost");bind("#eNote","dmNote");bind("#eBadge","badge");bind("#eHl","headline");bind("#eDesc","desc");bind("#eMat","material");bind("#eDate","date");bind("#eJPY","priceJPY");bind("#eUSD","priceUSD");bind("#eKRW","priceKRW");bind("#eSub","sub");bind("#eCl","cardLabel");
  $("#eQty").oninput=e=>{p.cardQty=Math.max(0,parseInt(e.target.value)||0);changed()};
  $("#eStock").onchange=e=>{const v=e.target.value.trim();if(v===""){p.stock=null;changed();return}const n=Math.round(+v);if(!isFinite(n))return;if(p.stock==null)p.stock=0;stockMove(p,"count",n,{note:"直接修改"});changed();re()};
  $("#eSafe").oninput=e=>{const v=e.target.value.trim();p.safe=v===""?null:Math.max(0,+v||0);changed()};
@@ -913,8 +1082,8 @@ function bindEditor(p,o){if(!p)return;o=o||{};const re=o.re||tabProd,done=o.done
  $("#eVen").onchange=e=>{if(e.target.value)p.vendor=e.target.value;else delete p.vendor;changed(true);re()};
  $("#eCat").onchange=e=>{p.cat=e.target.value;changed(true)};
  $("#eSold").onchange=e=>{p.soldout=e.target.checked;changed(true)};
- $("#eImg").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{p.img=await readImg(f,900)}catch(_){alert("無法讀取這張圖片。");return}changed(true);re()};
- if($("#eImgX"))$("#eImgX").onclick=()=>{delete p.img;changed(true);re()};
+ bindPhotos(p,re);
+
  $("#eDone").onclick=done;
  $("#eDel").onclick=()=>{if(!confirm("刪除「"+p.name+"」？進出貨與銷售紀錄會保留。"))return;S.products=S.products.filter(x=>x!==p);if(cur===p.id)cur=null;changed(true);done()};
 }
@@ -926,6 +1095,7 @@ function tabEvent(){const st=S.settings;
  '<label class="f"><span>場館／區域</span><input type="text" id="sHall" value="'+esc(st.hall)+'"></label>'+
  '<label class="f"><span>標語（可換行）</span><textarea id="sTag" style="min-height:56px">'+esc(st.tagline)+'</textarea></label>'+
  '<div class="hd">現場優惠</div><p class="note">滿額折扣會印在 DM，收銀台結帳時也會自動套用。</p><div id="rules"></div><label class="f"><span>其他優惠（一行一項，只印在 DM，例如贈品）</span><textarea id="sOff">'+esc(st.offers)+'</textarea></label>'+
+ '<div class="hd">贈品小圖</div><p class="note">上傳贈品照片，會以小圖印在 DM 的「現場優惠」區和活動型 DM。最多 6 項。</p><div id="gifts"></div><button class="btn sm ghost" id="addG">＋ 新增贈品</button>'+
  '<div class="hd">付款方式</div><div class="chips">'+PAYS.map(p=>'<label><input type="checkbox" value="'+esc(p)+'"'+(st.pays.includes(p)?" checked":"")+'>'+esc(p)+'</label>').join("")+'</div>'+
  '<div class="hd">連結 QR code</div><p class="note">最多 3 組，會自動產生 QR code（離線也能產生）。</p><div class="links" id="links"></div><button class="btn sm ghost" id="addL">＋ 新增連結</button>'+
  '<div class="hd">品牌</div><div class="two"><label class="f"><span>品牌名稱</span><input type="text" id="sBrand" value="'+esc(st.brand)+'"></label><label class="f"><span>英文名稱</span><input type="text" id="sBrandEn" value="'+esc(st.brandEn)+'"></label></div>'+
@@ -939,7 +1109,7 @@ function tabEvent(){const st=S.settings;
   document.querySelectorAll("#links input").forEach(x=>x.oninput=e=>{st.links[+x.dataset.i][x.dataset.k]=e.target.value;changed()});
   document.querySelectorAll("#links [data-x]").forEach(x=>x.onclick=()=>{st.links.splice(+x.dataset.x,1);drawLinks();changed(true)});
   $("#addL").hidden=st.links.length>=3};
- drawRules();drawLinks();$("#addL").onclick=()=>{st.links.push({label:"",url:""});drawLinks()};
+ drawRules();drawLinks();drawGifts();$("#addL").onclick=()=>{st.links.push({label:"",url:""});drawLinks()};
  $("#sLogo").onchange=async e=>{const f=e.target.files[0];if(!f)return;st.logo=await readImg(f,400);changed(true);tabEvent()};
  if($("#sLogoX"))$("#sLogoX").onclick=()=>{st.logo="";changed(true);tabEvent()};
 }
@@ -950,12 +1120,19 @@ const LAYOUTS=[
  ["promo","活動型","主視覺＋優惠卡＋主打",'<i class="k" style="height:16px"></i><i style="height:8px"></i><i style="height:8px;width:48%;display:inline-block"></i><i style="flex:1"></i>'],["poster","海報型","大攤位號＋主打，貼攤位",'<i class="k" style="height:14px"></i><i class="k" style="height:8px;width:60%"></i><i style="flex:1"></i><i style="height:6px"></i>']];
 function tabLay(){const st=S.settings;
  $("#pane").innerHTML='<div class="hd">版型</div><div class="lpick">'+LAYOUTS.map(([k,n,d,m])=>'<button data-l="'+k+'" class="'+(st.layout===k?"on":"")+'"><span class="mini">'+m+'</span><b>'+n+'</b><small>'+d+'</small></button>').join("")+'</div>'+
+ '<div class="hd">主打卡樣式（主打型）</div><div class="chips" id="fsty">'+[["big","大卡：主圖＋細節照，文字在右"],["grid","並排小卡"]].map(([k,n])=>'<label><input type="radio" name="fsty" value="'+k+'"'+(st.featStyle===k?" checked":"")+'>'+n+'</label>').join("")+'</div>'+
+ '<div class="hd">照片大小</div>'+
+ '<label class="f"><span>主打型・價目表每件小圖：<b id="oFth">'+st.featThumb+' mm</b></span><input type="range" min="5" max="14" step="0.5" id="sFth" value="'+st.featThumb+'" style="width:100%;accent-color:#111"></label>'+
+ '<label class="f"><span>價目表型・商品照片：<b id="oLth">'+st.listThumb+' mm</b></span><input type="range" min="8" max="30" step="1" id="sLth" value="'+st.listThumb+'" style="width:100%;accent-color:#111"></label>'+
+ '<p class="note" style="margin-top:-4px">照片越大，一頁能放的商品越少，放不下會自動加頁。主打卡的照片張數在每件商品的編輯裡設定。</p>'+
  '<div class="hd">紙張</div><div class="chips" id="papers">'+[["a5","A5 單張"],["a4","A4 放大"],["imp","A6 小卡 ×4"]].map(([k,n])=>'<label><input type="radio" name="pp" value="'+k+'"'+(st.paper===k?" checked":"")+'>'+n+'</label>').join("")+'</div>'+
  '<p class="note lnote">版面以 A5 設計，A4／A6 等比縮放，字級比例不變。A6 小卡會在一張 A4 拼 4 張並畫裁切虛線，適合發傳單。</p>'+
  '<div class="hd">顯示</div>'+
  [["groupCat","價目表依分類分組"],["showEn","顯示英文名稱"],["showSku","顯示商品編號"],["showStrike","有活動價時，原價劃線"],["hideSold","完售商品不印出（不勾＝印出並劃掉）"],["showOffer","顯示現場優惠"],["showPay","顯示付款方式"],["showQR","顯示 QR code"]].map(([k,n])=>'<label class="chk"><input type="checkbox" data-k="'+k+'"'+(st[k]?" checked":"")+'> '+n+'</label>').join("");
  document.querySelectorAll(".lpick button").forEach(b=>b.onclick=()=>{st.layout=b.dataset.l;changed(true);tabLay()});
  document.querySelectorAll("#papers input").forEach(r=>r.onchange=()=>{st.paper=r.value;$("#paper").value=r.value;changed(true)});
+ document.querySelectorAll("#fsty input").forEach(r=>r.onchange=()=>{st.featStyle=r.value;changed(true)});
+ [["#sFth","featThumb","#oFth"],["#sLth","listThumb","#oLth"]].forEach(([i,k,o])=>{$(i).oninput=e=>{st[k]=+e.target.value;$(o).textContent=st[k]+" mm";changed()}});
  document.querySelectorAll("[data-k]").forEach(c=>c.onchange=()=>{st[c.dataset.k]=c.checked;changed(true)});
 }
 
@@ -1104,28 +1281,28 @@ function foot(n,t){return'<footer class="dft"><span>'+esc(S.settings.footer)+'</
 function heroHTML(){const st=S.settings;const bl=(st.booth||"").length>5;
  return'<div class="hero"><div class="tx"><div class="k"><i></i>STALL INFO</div><h1>'+esc(st.event||"活動名稱")+'</h1>'+(st.date?'<div class="dt">'+esc(st.date)+'</div>':"")+(st.tagline?'<div class="tl">'+esc(st.tagline)+'</div>':"")+'</div>'+
  (st.booth?'<div class="booth"><small>BOOTH</small><b class="'+(bl?"l":"")+'">'+esc(st.booth)+'</b><em>'+esc(st.hall||"")+'</em></div>':"")+'</div>'}
-function featCard(p){const c=catById(p.cat);
- return'<article class="fc"><div class="img">'+(p.img?'<img src="'+esc(p.img)+'" alt="">':ico(c.icon))+(p.badge?'<span class="tg on">'+esc(p.badge)+'</span>':"")+(p.soldout?'<div class="sold"><span>完售</span></div>':"")+'</div>'+
+function featCard(p){const c=catById(p.cat),ks=dmPhotos(p);
+ return'<article class="fc"><div class="img'+(ks.length>1?" mp c"+ks.length:"")+'">'+(!ks.length?ico(c.icon):ks.length===1?pimg(p,ks[0]):ks.map(k=>'<span>'+pimg(p,k)+'</span>').join(""))+(p.badge?'<span class="tg on">'+esc(p.badge)+'</span>':"")+(p.soldout?'<div class="sold"><span>完售</span></div>':"")+'</div>'+
  '<div class="tx"><h3>'+esc(p.name)+'</h3>'+(S.settings.showEn&&p.en?'<div class="hl" style="font:500 5.6pt var(--f-display);letter-spacing:.08em;color:var(--muted)">'+esc(p.en)+'</div>':"")+(p.headline?'<div class="hl">'+esc(p.headline)+'</div>':"")+'<div class="pr">'+priceHTML(p)+(p.dmNote?'<span class="nt">'+esc(p.dmNote)+'</span>':"")+'</div></div></article>'}
-function offerHTML(){const st=S.settings,ls=ruleLines().concat((st.offers||"").split(/\n/).map(s=>s.trim()).filter(Boolean));if(!st.showOffer||!ls.length)return"";
- return'<div class="offer"><div class="bar"></div><div class="bd"><b>現場優惠</b><small>SPECIAL OFFER</small><ul>'+ls.map(l=>'<li>'+esc(l)+'</li>').join("")+'</ul></div></div>'}
+function offerHTML(){const st=S.settings,ls=ruleLines().concat((st.offers||"").split(/\n/).map(s=>s.trim()).filter(Boolean));const gf=giftsHTML();if(!st.showOffer||(!ls.length&&!gf))return"";
+ return'<div class="offer"><div class="bar"></div><div class="bd"><b>現場優惠</b><small>SPECIAL OFFER</small>'+(ls.length?'<ul>'+ls.map(l=>'<li>'+esc(l)+'</li>').join("")+'</ul>':"")+gf+'</div></div>'}
 function infoHTML(){const st=S.settings,links=(st.links||[]).filter(l=>l.url&&l.url.trim()).slice(0,3);
  const pay=st.showPay&&st.pays.length?'<small>PAYMENT 付款方式</small><div>'+st.pays.map(p=>'<span>'+esc(p)+'</span>').join("")+'</div>':"";
  const ct=st.contact?'<div class="ct">'+esc(st.contact)+'</div>':"";
  const qr=st.showQR&&links.length?'<div class="qrs">'+links.map(l=>'<figure>'+QR.svg(l.url.trim())+'<figcaption>'+esc(l.label||"LINK")+'</figcaption></figure>').join("")+'</div>':"";
  if(!pay&&!ct&&!qr)return"";return'<div class="info"><div class="pay">'+pay+ct+'</div>'+qr+'</div>'}
 function rowCompact(p){const st=S.settings,dm=num(DMP(p)),pr=num(PR(p)),now=dm!=null?dm:pr;
- return'<div class="pl'+(p.soldout?" so":"")+'"><span class="n">'+esc(p.name)+(st.showSku&&p.sku?'<small>'+esc(p.sku)+'</small>':"")+'</span><span class="ld"></span>'+(p.soldout?'<span class="nt">完售</span>':p.dmNote?'<span class="nt">'+esc(p.dmNote)+'</span>':"")+'<span class="p">'+(dm!=null&&pr!=null&&pr>dm&&st.showStrike?'<s>'+pr.toLocaleString("en-US")+'</s>':"")+(now==null?"洽詢":esc(CS())+now.toLocaleString("en-US"))+'</span></div>'}
+ return'<div class="pl wt'+(p.soldout?" so":"")+'">'+pth(p,"pth")+'<span class="n">'+esc(p.name)+(st.showSku&&p.sku?'<small>'+esc(p.sku)+'</small>':"")+'</span><span class="ld"></span>'+(p.soldout?'<span class="nt">完售</span>':p.dmNote?'<span class="nt">'+esc(p.dmNote)+'</span>':"")+'<span class="p">'+(dm!=null&&pr!=null&&pr>dm&&st.showStrike?'<s>'+pr.toLocaleString("en-US")+'</s>':"")+(now==null?"洽詢":esc(CS())+now.toLocaleString("en-US"))+'</span></div>'}
 function rowRich(p){const st=S.settings,c=catById(p.cat),dm=num(DMP(p)),pr=num(PR(p));
  const meta=[st.showSku&&p.sku,st.showEn&&p.en].filter(Boolean).map(esc).join(" · ");
- return'<div class="pr2'+(p.soldout?" so":"")+'"><div class="th">'+(p.img?'<img src="'+esc(p.img)+'" alt="">':ico(c.icon))+'</div><div style="min-width:0"><b>'+esc(p.name)+'</b>'+(meta?'<div class="m">'+meta+'</div>':"")+'</div><div class="r"><span class="now">'+(dm!=null||pr!=null?esc(CS())+(dm!=null?dm:pr).toLocaleString("en-US"):"洽詢")+'</span>'+(dm!=null&&pr!=null&&pr>dm&&st.showStrike?'<s>'+esc(CS())+pr.toLocaleString("en-US")+'</s>':"")+(p.soldout?'<span class="nt">完售</span>':p.dmNote?'<span class="nt">'+esc(p.dmNote)+'</span>':"")+'</div></div>'}
+ return'<div class="pr2'+(p.soldout?" so":"")+'">'+pth(p,"th")+'<div style="min-width:0"><b>'+esc(p.name)+'</b>'+(meta?'<div class="m">'+meta+'</div>':"")+'</div><div class="r"><span class="now">'+(dm!=null||pr!=null?esc(CS())+(dm!=null?dm:pr).toLocaleString("en-US"):"洽詢")+'</span>'+(dm!=null&&pr!=null&&pr>dm&&st.showStrike?'<s>'+esc(CS())+pr.toLocaleString("en-US")+'</s>':"")+(p.soldout?'<span class="nt">完售</span>':p.dmNote?'<span class="nt">'+esc(p.dmNote)+'</span>':"")+'</div></div>'}
 function catHead(c){return'<div class="ch"><i>'+esc(c.glyph||(c.name||"?").slice(0,1))+'</i>'+esc(c.name)+'</div>'}
 
 /* flow rows into columns, adding continuation pages when they run out */
 function flowPages(host,items,opt){
  const pages=[];
- const newPage=first=>{const pg=document.createElement("div");pg.className="page";
-  pg.innerHTML=first?opt.first():head("PRICE LIST · 續")+'<div class="dbd"><div class="st"><b>價目表</b><small>Price list</small><em>續</em></div><div class="flow'+(opt.cols===1?" one":"")+'"><div class="col"></div>'+(opt.cols===1?"":'<div class="col"></div>')+'</div></div>'+foot(0,0);
+ const newPage=first=>{const pg=document.createElement("div");pg.className="page";if(opt.vars)Object.keys(opt.vars).forEach(k=>pg.style.setProperty(k,opt.vars[k]));
+  pg.innerHTML=first?opt.first():head(opt.fresh?"PRICE LIST":"PRICE LIST · 續")+'<div class="dbd"><div class="st"><b>價目表</b><small>Price list</small><em>'+(opt.fresh?items.length+" ITEMS":"續")+'</em></div><div class="flow'+(opt.cols===1?" one":"")+'"><div class="col"></div>'+(opt.cols===1?"":'<div class="col"></div>')+'</div></div>'+foot(0,0);
   host.appendChild(pg);pages.push(pg);return pg};
  let pg=newPage(true),cols=[...pg.querySelectorAll(".col")],ci=0,lastCat=null;
  if(!cols.length)return pages;
@@ -1134,19 +1311,25 @@ function flowPages(host,items,opt){
   const html=(S.settings.groupCat&&p.cat!==lastCat?catHead(catById(p.cat)):"")+opt.row(p);
   let placed=false;
   while(!placed){const col=cols[ci],mark=col.children.length;col.insertAdjacentHTML("beforeend",html);
-   if(fits(col)||mark===0){placed=true;lastCat=p.cat}
+   if(fits(col)||(mark===0&&(pg!==pages[0]||col.clientHeight>=40))){placed=true;lastCat=p.cat}
    else{while(col.children.length>mark)col.lastChild.remove();ci++;
-    if(ci>=cols.length){pg=newPage(false);cols=[...pg.querySelectorAll(".col")];ci=0;lastCat=null}}}}
+    if(ci>=cols.length){
+     /* nothing fitted on the first page: drop its empty price-list heading and start the list fresh on the next page */
+     if(pg===pages[0]&&!pg.querySelector(".col *")){pg.querySelectorAll(".dbd>.st,.dbd>.flow").forEach(x=>x.remove());const sp=document.createElement("div");sp.style.flex="1";const o=pg.querySelector(".offer,.info");pg.querySelector(".dbd").insertBefore(sp,o);opt.fresh=true}
+     pg=newPage(false);opt.fresh=false;cols=[...pg.querySelectorAll(".col")];ci=0;lastCat=null}}}}
  return pages}
 
 function buildFeat(host){const st=S.settings,fe=featured(),rest=chosen().filter(p=>!fe.includes(p));
- return flowPages(host,rest,{cols:2,row:rowCompact,first:()=>head("STALL FLYER")+'<div class="dbd">'+heroHTML()+
-  (fe.length?'<div class="feat n'+fe.length+'">'+fe.map(featCard).join("")+'</div>':"")+
+ const pages=flowPages(host,rest,{cols:2,row:rowCompact,vars:{"--fth":st.featThumb+"mm"},first:()=>head("STALL FLYER")+'<div class="dbd">'+heroHTML()+
+  featBlock(fe)+
   (rest.length?'<div class="st"><b>價目表</b><small>Price list</small><em>'+rest.length+' ITEMS</em></div><div class="flow"><div class="col"></div><div class="col"></div></div>':'<div style="flex:1"></div>')+
-  offerHTML()+infoHTML()+'</div>'+foot(0,0)})}
+  offerHTML()+infoHTML()+'</div>'+foot(0,0)});
+ /* big cards: if the first page still overflows, shrink the photo column until it fits */
+ const fb=pages[0]&&pages[0].querySelector(".fbs");if(fb){const d=pages[0].querySelector(".dbd");let w=parseFloat(fb.style.getPropertyValue("--fbw"))||50;while(d.scrollHeight>d.clientHeight+1&&w>26){w-=3;fb.style.setProperty("--fbw",w+"mm")}}
+ return pages}
 function buildList(host){const st=S.settings,all=chosen();
  if(!all.length){const pg=document.createElement("div");pg.className="page";pg.innerHTML=head("PRICE LIST")+'<div class="dbd">'+heroHTML()+'<div class="empty">到「商品」勾選要放進 DM 的商品</div></div>'+foot(0,0);host.appendChild(pg);return[pg]}
- return flowPages(host,all,{cols:all.length>12?2:1,row:rowRich,first:()=>head("PRICE LIST")+'<div class="dbd">'+heroHTML()+offerHTML()+
+ return flowPages(host,all,{cols:all.length>12?2:1,row:rowRich,vars:{"--lth":st.listThumb+"mm"},first:()=>head("PRICE LIST")+'<div class="dbd">'+heroHTML()+offerHTML()+
   '<div class="st"><b>價目表</b><small>Price list</small><em>'+all.length+' ITEMS</em></div><div class="flow'+(all.length>12?"":" one")+'"><div class="col"></div>'+(all.length>12?'<div class="col"></div>':"")+'</div>'+infoHTML()+'</div>'+foot(0,0)})}
 function buildPoster(host){const st=S.settings,fe=featured(),pg=document.createElement("div");pg.className="page poster";
  pg.innerHTML=head("WELCOME")+'<div class="dbd"><div class="big"><div class="k"><i></i>'+esc(st.brandEn||"STALL")+'</div><h1>'+esc(st.event||"活動名稱")+'</h1>'+(st.date?'<div class="dt">'+esc(st.date)+'</div>':"")+'</div>'+
@@ -1360,21 +1543,21 @@ function drawRep(){const el=$("#m-rep"),keys=repKeys(),ss=repSales(),ev=evOfKey(
 const PT_TAG={amt:"滿額",pct:"折扣",nfor:"任選",bxgy:"買送",bundle:"組合"};
 function promoCardDM(p){const t=PT_TAG[p.type]||"優惠";
  if(p.type==="bundle"){const ps=(p.items||[]).map(id=>S.products.find(x=>x.id===id)).filter(Boolean),orig=ps.reduce((a,x)=>a+(num(PR(x))||0),0);
-  return'<div class="pk2 wide"><i>'+t+'</i><div class="bd"><div class="ths">'+ps.map(x=>'<span>'+(x.img?'<img src="'+esc(x.img)+'" alt="">':ico(catById(x.cat).icon))+'</span>').join('<em>＋</em>')+'</div><div><b>'+esc(p.name||ps.map(x=>x.name).join("＋"))+'</b><div class="pr">'+(orig>p.price?'<s>'+esc(CS())+orig.toLocaleString("en-US")+'</s>':"")+'<span class="now"><small>'+esc(CS())+'</small>'+(+p.price).toLocaleString("en-US")+'</span></div></div></div></div>'}
+  return'<div class="pk2 wide"><i>'+t+'</i><div class="bd"><div class="ths">'+ps.map(x=>pth(x,"tb")).join('<em>＋</em>')+'</div><div><b>'+esc(p.name||ps.map(x=>x.name).join("＋"))+'</b><div class="pr">'+(orig>p.price?'<s>'+esc(CS())+orig.toLocaleString("en-US")+'</s>':"")+'<span class="now"><small>'+esc(CS())+'</small>'+(+p.price).toLocaleString("en-US")+'</span></div></div></div></div>'}
  const big={amt:()=>(p.rep?"每滿":"滿")+" "+(+p.min).toLocaleString("en-US")+"<br>折 "+(+p.off).toLocaleString("en-US"),pct:()=>rateTxt(p.rate)+" 折",nfor:()=>"任選 "+p.n+" 件<br>"+esc(CS())+(+p.price).toLocaleString("en-US"),bxgy:()=>"買 "+p.n+" 送 "+p.m}[p.type];
  const sub=p.type==="amt"?(p.rep?"可累計":"每筆一次"):p.type==="pct"?(scopeTxt(p).trim()+(p.min>0?" · 滿 "+(+p.min).toLocaleString("en-US"):"")):scopeTxt(p).trim()+(p.type==="bxgy"?" · 送最便宜的":"");
  return'<div class="pk2"><i>'+t+'</i><div class="bd"><b>'+(big?big():esc(promoName(p)))+'</b><small>'+esc(p.name&&p.name.trim()?p.name:sub)+'</small></div></div>'}
 function buildPromo(host){const st=S.settings,fe=featured(),ps=(st.promos||[]).filter(p=>p.on&&promoValid(p)),pg=document.createElement("div");pg.className="page promo";
  const hero=st.heroImg?'<div class="phimg"><img src="'+esc(st.heroImg)+'" alt=""></div>':"";
  pg.innerHTML=head("EVENT")+'<div class="dbd">'+hero+heroHTML()+
- (ps.length?'<div class="st"><b>活動優惠</b><small>Special offer</small><em>'+(ps.length>1&&st.promoMode!=="stack"?"擇一 · 自動選最划算":ps.length+" 項")+'</em></div><div class="pks">'+ps.slice().sort((a,b)=>(a.type==="bundle")-(b.type==="bundle")).slice(0,6).map(promoCardDM).join("")+'</div>':'<div class="empty">到「活動」頁新增優惠，這裡會自動排出優惠卡</div>')+
+ (ps.length?'<div class="st"><b>活動優惠</b><small>Special offer</small><em>'+(ps.length>1&&st.promoMode!=="stack"?"擇一 · 自動選最划算":ps.length+" 項")+'</em></div><div class="pks">'+ps.slice().sort((a,b)=>(a.type==="bundle")-(b.type==="bundle")).slice(0,6).map(promoCardDM).join("")+giftCard()+'</div>':giftList().length?'<div class="st"><b>贈品</b><small>Gift</small></div><div class="pks">'+giftCard()+'</div>':'<div class="empty">到「活動」頁新增優惠，這裡會自動排出優惠卡</div>')+
  (fe.length?'<div class="st"><b>活動主打</b><small>Featured</small></div><div class="feat n'+Math.min(3,fe.length)+'">'+fe.slice(0,3).map(featCard).join("")+'</div>':"")+
  '<div style="flex:1"></div>'+infoHTML()+'</div>'+foot(0,0);host.appendChild(pg);
  /* keep it on one A5 page: smaller banner, then 1–2 featured, then fewer offer cards */
  const bd=pg.querySelector(".dbd"),over=()=>bd.scrollHeight>bd.clientHeight+1,im=pg.querySelector(".phimg");
  if(over()&&im)im.style.height="42mm";const fe2=pg.querySelector(".feat");if(over()&&fe2&&fe2.children.length>2){fe2.lastElementChild.remove();fe2.className="feat n2"}
  if(over()&&fe2){fe2.previousElementSibling.remove();fe2.remove()}if(over()&&im)im.style.height="30mm";
- const ks=[...pg.querySelectorAll(".pk2")];while(over()&&ks.length>2)ks.pop().remove();return[pg]}
+ const ks=[...pg.querySelectorAll(".pk2:not(.gfc)")];while(over()&&ks.length>2)ks.pop().remove();return[pg]}
 
 /* =====================================================================
    修圖・合成圖：人物＋商品合成宣傳圖（畫在 canvas 上，可下載 PNG、放進 DM、設為商品照片）
@@ -1580,29 +1763,31 @@ function bindLog(el){el.querySelectorAll("[data-void]").forEach(b=>b.onclick=()=
 let toastT=null;function toast(t){let el=$("#toast");if(!el){el=document.createElement("div");el.id="toast";el.style.cssText="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#111;color:#fff;padding:9px 14px;font-size:.85rem;z-index:60;max-width:90vw";document.body.appendChild(el)}el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,1800)}
 
 /* ---------- 庫存 ---------- */
-const INV={q:"",cat:"",table:false};
+const INV={q:"",cat:"",table:false,sort:"low",fil:""};try{const v=JSON.parse(localStorage.getItem("fox-inv-sort")||"{}");if(v.sort)INV.sort=v.sort;if(v.fil!=null)INV.fil=v.fil}catch(_){}
 function drawInv(){const el=$("#m-inv"),tr=S.products.filter(p=>p.stock!=null);
  el.innerHTML='<div class="xw"><div class="xh"><span class="lg"></span><div><b>庫存</b><small>INVENTORY</small><small class="upd" data-upd>'+esc(badgeText())+'</small></div><div class="r"><button class="xpill'+(INV.table?" k":"")+'" id="qtT">'+(INV.table?"回到清單":"快速編輯表")+'</button></div></div><div class="xb">'+
  '<div class="xstats"><div><b>'+S.products.length+'</b><small>品項</small></div><div><b>'+tr.reduce((a,p)=>a+Math.max(0,p.stock),0).toLocaleString("en-US")+'</b><small>總庫存</small></div><div class="k"><b>'+S.products.filter(p=>isLow(p)||isOut(p)).length+'</b><small>低庫存／完售</small></div></div>'+
  '<input class="xsearch" id="iq" placeholder="搜尋名稱、編號…" value="'+esc(INV.q)+'" type="search">'+
  '<div class="xchips"><button data-ic="" class="'+(INV.cat?"":"on")+'">全部</button>'+S.cats.map(c=>'<button data-ic="'+esc(c.id)+'" class="'+(INV.cat===c.id?"on":"")+'">'+esc(c.short||c.name)+'</button>').join("")+'</div>'+
+ '<div class="xsort"><label><span>排序</span><select id="isort">'+ISORT.map(([k,n])=>'<option value="'+k+'"'+(INV.sort===k?" selected":"")+'>'+n+'</option>').join("")+'</select></label><label><span>篩選</span><select id="ifil">'+IFIL.map(([k,n])=>'<option value="'+k+'"'+(INV.fil===k?" selected":"")+'>'+n+'</option>').join("")+'</select></label></div>'+
  '<div id="ibody"></div><button class="xfab" id="addI" aria-label="新增商品">＋</button></div></div>';
  drawInvList();
  $("#qtT").onclick=()=>{INV.table=!INV.table;drawInv()};
  $("#iq").oninput=e=>{INV.q=e.target.value;drawInvList()};
+ const keep=()=>{try{localStorage.setItem("fox-inv-sort",JSON.stringify({sort:INV.sort,fil:INV.fil}))}catch(_){}drawInvList()};$("#isort").onchange=e=>{INV.sort=e.target.value;keep()};$("#ifil").onchange=e=>{INV.fil=e.target.value;keep()};
  el.querySelectorAll("[data-ic]").forEach(b=>b.onclick=()=>{INV.cat=b.dataset.ic;drawInv()});
  $("#addI").onclick=newProduct}
-function invItems(){const q=INV.q.trim().toLowerCase();return S.products.filter(p=>(!INV.cat||p.cat===INV.cat)&&(!q||(p.name+" "+(p.en||"")+" "+(p.sku||"")).toLowerCase().includes(q)))}
+function invItems(){const q=INV.q.trim().toLowerCase();return S.products.filter(p=>(!INV.cat||p.cat===INV.cat)&&(!q||(p.name+" "+(p.en||"")+" "+(p.sku||"")).toLowerCase().includes(q))&&invFil(p))}
 function drawInvList(){const box=$("#ibody"),list=invItems();
  if(INV.table){
   box.innerHTML='<p class="note" style="margin:0 0 6px">一次輸入全部商品：改完按 Tab 或點別處就會存。庫存欄改數字會記一筆「盤點」。</p><div class="qtw"><table class="qt"><thead><tr><th>名稱</th><th>編號</th><th>定價</th><th>活動價</th><th>成本</th><th>庫存</th><th>安全量</th><th>DM</th></tr></thead><tbody>'+
-  list.sort(byCat).map(p=>'<tr data-qp="'+esc(p.id)+'"><td class="nm"><input type="text" data-k="name" value="'+esc(p.name)+'"></td><td><input type="text" data-k="sku" value="'+esc(p.sku||"")+'"></td><td><input type="text" inputmode="decimal" data-k="price" value="'+esc(p.price||"")+'"></td><td><input type="text" inputmode="decimal" data-k="dmPrice" value="'+esc(p.dmPrice||"")+'"></td><td><input type="text" inputmode="decimal" data-k="cost" value="'+esc(p.cost||"")+'"></td><td><input type="number" inputmode="numeric" data-k="stock" value="'+(p.stock==null?"":p.stock)+'"></td><td><input type="number" inputmode="numeric" data-k="safe" value="'+(p.safe==null?"":p.safe)+'" placeholder="'+esc(S.settings.safeDef)+'"></td><td><input type="checkbox" data-k="on"'+(p.on?" checked":"")+' style="accent-color:#111;width:18px;height:18px"></td></tr>').join("")+'</tbody></table></div>';
+  invSort(list).map(p=>'<tr data-qp="'+esc(p.id)+'"><td class="nm"><input type="text" data-k="name" value="'+esc(p.name)+'"></td><td><input type="text" data-k="sku" value="'+esc(p.sku||"")+'"></td><td><input type="text" inputmode="decimal" data-k="price" value="'+esc(p.price||"")+'"></td><td><input type="text" inputmode="decimal" data-k="dmPrice" value="'+esc(p.dmPrice||"")+'"></td><td><input type="text" inputmode="decimal" data-k="cost" value="'+esc(p.cost||"")+'"></td><td><input type="number" inputmode="numeric" data-k="stock" value="'+(p.stock==null?"":p.stock)+'"></td><td><input type="number" inputmode="numeric" data-k="safe" value="'+(p.safe==null?"":p.safe)+'" placeholder="'+esc(S.settings.safeDef)+'"></td><td><input type="checkbox" data-k="on"'+(p.on?" checked":"")+' style="accent-color:#111;width:18px;height:18px"></td></tr>').join("")+'</tbody></table></div>';
   box.querySelectorAll("tr[data-qp] input").forEach(x=>x.onchange=()=>{const p=S.products.find(y=>y.id===x.closest("tr").dataset.qp),k=x.dataset.k,v=x.type==="checkbox"?x.checked:x.value.trim();
    if(k==="stock"){if(v===""){p.stock=null}else{if(p.stock==null)p.stock=0;stockMove(p,"count",+v||0,{note:"快速編輯表"})}}
    else if(k==="safe")p.safe=v===""?null:Math.max(0,+v||0);else p[k]=v;changed()});
   return}
- const sorted=list.sort((a,b)=>(a.stock==null)-(b.stock==null)||(a.stock-b.stock)||byCat(a,b));
- box.innerHTML='<div class="xhd">庫存<em>依庫存少 → 多</em></div>'+(sorted.length?'<ul class="xil">'+sorted.map(p=>{const out=isOut(p),low=isLow(p),pr=nowPrice(p);
+ const sorted=invSort(list);
+ box.innerHTML='<div class="xhd">'+esc((IFIL.find(x=>x[0]===INV.fil)||IFIL[0])[1])+'<em>'+esc((ISORT.find(x=>x[0]===INV.sort)||ISORT[0])[1])+' · '+sorted.length+' 項</em></div>'+(sorted.length?'<ul class="xil">'+sorted.map(p=>{const out=isOut(p),low=isLow(p),pr=nowPrice(p);
   return'<li data-ip="'+esc(p.id)+'">'+thumb(p)+'<div style="min-width:0"><b>'+esc(p.name)+(low?'<span class="xtag">低</span>':"")+'</b><div class="m">'+esc([p.sku,pr==null?"":fmtM(pr),p.cost?"成本 "+fmtM(p.cost):""].filter(Boolean).join(" · "))+'</div></div><div class="xq'+(p.stock==null?" na":out?" zero":low?" low":"")+'"><b>'+(p.stock==null?"—":p.stock)+'</b><small>'+(p.stock==null?"不追蹤":out?"完售":low?"安全量 "+safeOf(p):"件")+'</small></div></li>'}).join("")+'</ul>':'<div class="xempty">沒有符合的商品</div>');
  box.querySelectorAll("[data-ip]").forEach(li=>li.onclick=()=>openEditor(S.products.find(p=>p.id===li.dataset.ip)))}
 
