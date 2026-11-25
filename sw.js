@@ -2,7 +2,7 @@
    App files: served from cache first, refreshed in the background when online.
    Google Fonts: cached the first time they load, so the right fonts also show offline.
    Your data never goes through here: it lives in the browser's IndexedDB on the device. */
-const VER = "fox-stall-v5";
+const VER = "fox-stall-v6";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
