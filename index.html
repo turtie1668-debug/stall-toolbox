@@ -481,6 +481,43 @@ img.lgi{display:block;flex:none;width:9mm;height:9mm;object-fit:contain}
 .fb.so h3,.fb.so .pr .now{text-decoration:line-through;color:#9a9a96}
 .fbs.n2 .fbx h3{font-size:10pt}.fbs.n2 .fbx .ds{-webkit-line-clamp:4}.fbs.n2 .fbx .pr .now{font-size:12pt}
 .fbs.n3 .fbx{padding:1.6mm 2.4mm;gap:.6mm}.fbs.n3 .fbx h3{font-size:8.6pt}.fbs.n3 .fbx .hl{font-size:6.4pt}.fbs.n3 .fbx .ds{-webkit-line-clamp:2;font-size:6pt}.fbs.n3 .fbx .pr .now{font-size:11pt}.fbs.n3 .fbt b{font-size:5pt;padding:.7mm 1.4mm}
+/* DM 比例格 */
+.ag{flex:1;min-height:0;position:relative}
+.ac{position:absolute;display:flex;flex-direction:column;border:.35mm solid #111;background:#fff;overflow:hidden}
+.ac.ft{border-width:.55mm}
+.ac.hz{flex-direction:row}
+.acp{flex:1;min-height:0;min-width:0;display:flex;flex-direction:column;gap:.6mm;padding:.6mm}
+.ac.hz .acp{flex:none;width:46%}
+.acm{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--bg2);display:grid;place-items:center;color:#b7b7b1}
+.acm svg{width:34%;height:34%}
+.acm img,.acd span img{position:absolute;inset:0;width:100%;height:100%}
+.acd{flex:none;height:24%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6mm}
+.ac.hz .acd{height:30%}
+.acd span{position:relative;overflow:hidden;background:var(--bg2)}
+.acx{flex:none;min-width:0;max-height:62%;overflow:hidden;padding:1.4mm 2.2mm 1.6mm;display:flex;flex-direction:column;gap:.5mm;border-top:.35mm solid #111}
+.ac.hz .acx{flex:1;max-height:none;border-top:0;border-left:.35mm solid #111;padding:2mm 2.8mm}
+.acx .gap{display:none}
+.ac.hz .acx .gap{display:block;flex:1}
+.acx .mt{font:700 5.2pt var(--f-display);letter-spacing:.08em;color:var(--muted)}
+.acx h3{margin:0;font:900 8.4pt/1.25 var(--f-body);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ac.zl h3{font-size:11pt}
+.ac.zs h3{font-size:7.2pt;-webkit-line-clamp:1}
+.acx .en{font:500 5.4pt var(--f-display);letter-spacing:.08em;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.acx .hl{font-size:6.6pt;font-weight:700;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.acx .ds{font-size:6.3pt;line-height:1.55;color:#2b2b28;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-line}
+.ac.hz .acx .ds{-webkit-line-clamp:6}
+.acx .tg2{align-self:flex-start;background:#111;color:#fff;font:700 5.6pt/1.6 var(--f-body);padding:0 1.4mm}
+.acx .mat{display:flex;gap:2.4mm;font-size:6.2pt;font-weight:500;border-bottom:.2mm solid var(--line);padding-bottom:.6mm}
+.acx .mat span{color:var(--muted)}
+.acx .pr{display:flex;align-items:baseline;gap:1.4mm;flex-wrap:wrap}
+.acx .pr .now{font:900 11pt/1.1 var(--f-display)}
+.ac.zl .acx .pr .now{font-size:14pt}
+.ac.zs .acx .pr .now{font-size:9pt}
+.acx .pr .now small{font-size:.62em;margin-right:.4mm}
+.acx .pr s{font:500 5.6pt var(--f-display);color:var(--muted)}
+.ac.so h3,.ac.so .pr .now{text-decoration:line-through;color:#9a9a96}
+.ac.zs .fbt b{font-size:5pt;padding:.6mm 1.2mm}
+.ac.zs .fbt i{width:4mm}
 /* DM 活動型 */
 .promo .dbd{gap:3.2mm}
 .phimg{flex:none;border:.5mm solid #111;overflow:hidden;height:56mm}
@@ -916,7 +953,7 @@ function normalize(d){const b=SAMPLE();d=d&&typeof d==="object"?d:{};const ds=d.
  if(!Array.isArray(st.pays))st.pays=b.settings.pays.slice();
  if(!Array.isArray(st.links))st.links=[];
  const okImg=v=>typeof v==="string"&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+\/=]+$/.test(v);if(st.heroImg&&!okImg(st.heroImg))st.heroImg="";if(st.comp&&typeof st.comp==="object"){["L","R"].forEach(k=>{const l=st.comp[k];if(l&&l.src&&!okImg(l.src))l.src=""})}else delete st.comp;
- st.gifts=(Array.isArray(st.gifts)?st.gifts:[]).filter(g=>g&&typeof g==="object").slice(0,6).map(g=>({id:String(g.id||uid("g")),n:String(g.n||"").slice(0,30),c:String(g.c||"").slice(0,30),img:okImg(g.img)?g.img:""}));st.featThumb=nb(st.featThumb,7,5,14);if(st.featStyle!=="grid")st.featStyle="big";st.listThumb=nb(st.listThumb,12,8,30);
+ st.gifts=(Array.isArray(st.gifts)?st.gifts:[]).filter(g=>g&&typeof g==="object").slice(0,6).map(g=>({id:String(g.id||uid("g")),n:String(g.n||"").slice(0,30),c:String(g.c||"").slice(0,30),img:okImg(g.img)?g.img:""}));st.featThumb=nb(st.featThumb,7,5,14);if(!st.areaV){if(st.featStyle!=="grid")st.featStyle="area";st.areaV=1}if(!["grid","big","area"].includes(st.featStyle))st.featStyle="area";st.featArea=nb(st.featArea,25,10,50);st.normArea=nb(st.normArea,16.67,5,33);st.listThumb=nb(st.listThumb,12,8,30);
  /* older DM files: their 滿額 text stays in 其他優惠, so start without rules */
  if(!Array.isArray(ds.rules))st.rules=Array.isArray(d.products)?[]:b.settings.rules;
  st.rules=st.rules.filter(r=>r&&typeof r==="object").map(r=>({min:nb(r.min,0,0,1e9),off:nb(r.off,0,0,1e9),rep:!!r.rep}));
@@ -925,7 +962,7 @@ function normalize(d){const b=SAMPLE();d=d&&typeof d==="object"?d:{};const ds=d.
  st.posNo=Math.max(0,parseInt(st.posNo)||0);st.safeDef=nb(st.safeDef,5,0,1e6);
  const products=(Array.isArray(d.products)?d.products:b.products).filter(p=>p&&typeof p==="object").map(p=>{p.id=String(p.id||uid());
   p.stock=p.stock===""||p.stock==null||!isFinite(+p.stock)?null:Math.round(+p.stock);p.safe=p.safe==null||!isFinite(+p.safe)?null:Math.max(0,+p.safe);
-  ["img2","img3","img4"].forEach(k=>{if(p[k]&&!okImg(p[k]))delete p[k]});if(p.crop&&typeof p.crop==="object"){const c={};["img","img2","img3","img4"].forEach(k=>{const v=p.crop[k];if(v&&typeof v==="object")c[k]={x:nb(v.x,50,-50,150),y:nb(v.y,50,-50,150),z:nb(v.z,1,.2,5)}});p.crop=c}else delete p.crop;if(p.dmN!=null)p.dmN=Math.max(1,Math.min(4,parseInt(p.dmN)||1));if(p.fit!=="contain")delete p.fit;return p});
+  ["img2","img3","img4"].forEach(k=>{if(p[k]&&!okImg(p[k]))delete p[k]});if(p.crop&&typeof p.crop==="object"){const c={};["img","img2","img3","img4"].forEach(k=>{const v=p.crop[k];if(v&&typeof v==="object")c[k]={x:nb(v.x,50,-50,150),y:nb(v.y,50,-50,150),z:nb(v.z,1,.2,5)}});p.crop=c}else delete p.crop;if(p.dmN!=null)p.dmN=Math.max(1,Math.min(4,parseInt(p.dmN)||1));if(p.area!=null){const a=parseFloat(p.area);if(a>0&&a<=50)p.area=a;else delete p.area}if(p.fit!=="contain")delete p.fit;return p});
  return{settings:st,vendors:Array.isArray(d.vendors)?d.vendors:b.vendors,cats:Array.isArray(d.cats)?d.cats:b.cats,products,
   moves:Array.isArray(d.moves)?d.moves:[],sales:Array.isArray(d.sales)?d.sales:[],events:(Array.isArray(d.events)?d.events:Array.isArray(d.products)?[]:b.events).filter(e=>e&&typeof e==="object").map(e=>({id:String(e.id||uid("e")),ev:String(e.ev||""),date:String(e.date||""),booth:String(e.booth||""),hall:String(e.hall||""),fee:nb(e.fee,0,0,1e9),target:nb(e.target,0,0,1e12),costs:(Array.isArray(e.costs)?e.costs:[]).map(c=>({n:String((c&&c.n)||"").slice(0,40),a:nb(c&&c.a,0,0,1e9)}))})),meta:Object.assign({},d.meta&&typeof d.meta==="object"?d.meta:{})}}
 function download(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:type+";charset=utf-8"}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
@@ -1068,12 +1105,13 @@ function editor(p){const c=catById(p.cat),sec=t=>'<div class="edsec">'+t+'</div>
  '<label class="f"><span>主打一句話（主打卡片才會顯示）</span><textarea id="eHl" style="min-height:52px">'+esc(p.headline||"")+'</textarea></label>'+
  '<label class="f"><span>商品介紹（主打大卡顯示）</span><textarea id="eDesc" style="min-height:64px">'+esc(p.desc||"")+'</textarea></label>'+
  '<div class="two"><label class="f"><span>材質</span><input type="text" id="eMat" value="'+esc(p.material||"")+'" placeholder="光固化樹脂、ABS"></label><label class="f"><span>發售</span><input type="text" id="eDate" value="'+esc(p.date||"")+'" placeholder="2026.11"></label></div>'+
+ '<label class="f"><span>DM 版面大小（比例格版型）</span><select id="eArea">'+[["","自動（"+(p.feat?"跟主打設定":"跟其他商品設定")+"）"],["50","1/2 頁"],["33.33","1/3 頁"],["25","1/4 頁"],["16.67","1/6 頁"],["12.5","1/8 頁"],["8.33","1/12 頁"]].map(([v,n])=>'<option value="'+v+'"'+(String(p.area||"")===v?" selected":"")+'>'+n+'</option>').join("")+'</select></label>'+
  '<div class="two"><label class="f"><span>小卡張數</span><input type="number" min="0" id="eQty" value="'+esc(p.cardQty==null?1:p.cardQty)+'"></label><label class="f"><span>小卡分類標籤（留白＝「'+esc([catById(p.cat).short||catById(p.cat).name,p.sub].filter(Boolean).join(" . "))+'」）</span><input type="text" id="eCl" value="'+esc(p.cardLabel||"")+'"></label></div>'+
  '<label class="chk"><input type="checkbox" id="eSold"'+(p.soldout?" checked":"")+'> 標示「完售」'+(S.settings.autoSold!==false?'（庫存歸零時會自動勾選）':"")+'</label>'+
  '<div class="row"><button class="btn sm" id="eDone">完成</button><div class="sp"></div><button class="btn sm warn" id="eDel">刪除此商品</button></div></div>'}
 function bindEditor(p,o){if(!p)return;o=o||{};const re=o.re||tabProd,done=o.done||(()=>{cur=null;tabProd()});
  const bind=(id,k)=>{$(id).oninput=e=>{p[k]=e.target.value;changed()}};
- bind("#eName","name");bind("#eEn","en");bind("#eSku","sku");bind("#ePrice","price");bind("#eDm","dmPrice");bind("#eCost","cost");bind("#eNote","dmNote");bind("#eBadge","badge");bind("#eHl","headline");bind("#eDesc","desc");bind("#eMat","material");bind("#eDate","date");bind("#eJPY","priceJPY");bind("#eUSD","priceUSD");bind("#eKRW","priceKRW");bind("#eSub","sub");bind("#eCl","cardLabel");
+ bind("#eName","name");bind("#eEn","en");bind("#eSku","sku");bind("#ePrice","price");bind("#eDm","dmPrice");bind("#eCost","cost");bind("#eNote","dmNote");bind("#eBadge","badge");bind("#eHl","headline");bind("#eDesc","desc");bind("#eMat","material");bind("#eDate","date");$("#eArea").onchange=e=>{const v=parseFloat(e.target.value);if(v>0)p.area=v;else delete p.area;changed(true)};bind("#eJPY","priceJPY");bind("#eUSD","priceUSD");bind("#eKRW","priceKRW");bind("#eSub","sub");bind("#eCl","cardLabel");
  $("#eQty").oninput=e=>{p.cardQty=Math.max(0,parseInt(e.target.value)||0);changed()};
  $("#eStock").onchange=e=>{const v=e.target.value.trim();if(v===""){p.stock=null;changed();return}const n=Math.round(+v);if(!isFinite(n))return;if(p.stock==null)p.stock=0;stockMove(p,"count",n,{note:"直接修改"});changed();re()};
  $("#eSafe").oninput=e=>{const v=e.target.value.trim();p.safe=v===""?null:Math.max(0,+v||0);changed()};
@@ -1120,7 +1158,10 @@ const LAYOUTS=[
  ["promo","活動型","主視覺＋優惠卡＋主打",'<i class="k" style="height:16px"></i><i style="height:8px"></i><i style="height:8px;width:48%;display:inline-block"></i><i style="flex:1"></i>'],["poster","海報型","大攤位號＋主打，貼攤位",'<i class="k" style="height:14px"></i><i class="k" style="height:8px;width:60%"></i><i style="flex:1"></i><i style="height:6px"></i>']];
 function tabLay(){const st=S.settings;
  $("#pane").innerHTML='<div class="hd">版型</div><div class="lpick">'+LAYOUTS.map(([k,n,d,m])=>'<button data-l="'+k+'" class="'+(st.layout===k?"on":"")+'"><span class="mini">'+m+'</span><b>'+n+'</b><small>'+d+'</small></button>').join("")+'</div>'+
- '<div class="hd">主打卡樣式（主打型）</div><div class="chips" id="fsty">'+[["big","大卡：主圖＋細節照，文字在右"],["grid","並排小卡"]].map(([k,n])=>'<label><input type="radio" name="fsty" value="'+k+'"'+(st.featStyle===k?" checked":"")+'>'+n+'</label>').join("")+'</div>'+
+ '<div class="hd">主打卡樣式（主打型）</div><div class="chips" id="fsty">'+[["area","比例格：每件都是照片卡"],["big","大卡＋價目表"],["grid","並排小卡＋價目表"]].map(([k,n])=>'<label><input type="radio" name="fsty" value="'+k+'"'+(st.featStyle===k?" checked":"")+'>'+n+'</label>').join("")+'</div>'+
+ (st.featStyle==="area"?'<label class="f"><span>主打商品大小：<b id="oFa">'+st.featArea+'%（'+fracTxt(st.featArea)+'）</b></span><input type="range" min="10" max="50" step="0.5" id="sFa" value="'+st.featArea+'" style="width:100%;accent-color:#111"></label>'+
+  '<label class="f"><span>其他商品大小：<b id="oNa">'+st.normArea+'%（'+fracTxt(st.normArea)+'）</b></span><input type="range" min="5" max="33" step="0.1" id="sNa" value="'+st.normArea+'" style="width:100%;accent-color:#111"></label>'+
+  '<p class="note" style="margin-top:-4px">兩欄排列：1/4 頁＝半欄寬、半頁高；1/6 頁＝半欄寬、1/3 頁高；調到 45% 以上會變成整列寬。個別商品可以在商品編輯的「DM 版面大小」另外指定。</p>':"")+
  '<div class="hd">照片大小</div>'+
  '<label class="f"><span>主打型・價目表每件小圖：<b id="oFth">'+st.featThumb+' mm</b></span><input type="range" min="5" max="14" step="0.5" id="sFth" value="'+st.featThumb+'" style="width:100%;accent-color:#111"></label>'+
  '<label class="f"><span>價目表型・商品照片：<b id="oLth">'+st.listThumb+' mm</b></span><input type="range" min="8" max="30" step="1" id="sLth" value="'+st.listThumb+'" style="width:100%;accent-color:#111"></label>'+
@@ -1131,7 +1172,8 @@ function tabLay(){const st=S.settings;
  [["groupCat","價目表依分類分組"],["showEn","顯示英文名稱"],["showSku","顯示商品編號"],["showStrike","有活動價時，原價劃線"],["hideSold","完售商品不印出（不勾＝印出並劃掉）"],["showOffer","顯示現場優惠"],["showPay","顯示付款方式"],["showQR","顯示 QR code"]].map(([k,n])=>'<label class="chk"><input type="checkbox" data-k="'+k+'"'+(st[k]?" checked":"")+'> '+n+'</label>').join("");
  document.querySelectorAll(".lpick button").forEach(b=>b.onclick=()=>{st.layout=b.dataset.l;changed(true);tabLay()});
  document.querySelectorAll("#papers input").forEach(r=>r.onchange=()=>{st.paper=r.value;$("#paper").value=r.value;changed(true)});
- document.querySelectorAll("#fsty input").forEach(r=>r.onchange=()=>{st.featStyle=r.value;changed(true)});
+ document.querySelectorAll("#fsty input").forEach(r=>r.onchange=()=>{st.featStyle=r.value;changed(true);tabLay()});
+ if($("#sFa"))[["#sFa","featArea","#oFa"],["#sNa","normArea","#oNa"]].forEach(([i,k,o])=>{$(i).oninput=e=>{st[k]=+e.target.value;$(o).textContent=st[k]+"%（"+fracTxt(st[k])+"）";changed()}});
  [["#sFth","featThumb","#oFth"],["#sLth","listThumb","#oLth"]].forEach(([i,k,o])=>{$(i).oninput=e=>{st[k]=+e.target.value;$(o).textContent=st[k]+" mm";changed()}});
  document.querySelectorAll("[data-k]").forEach(c=>c.onchange=()=>{st[c.dataset.k]=c.checked;changed(true)});
 }
@@ -1319,7 +1361,45 @@ function flowPages(host,items,opt){
      pg=newPage(false);opt.fresh=false;cols=[...pg.querySelectorAll(".col")];ci=0;lastCat=null}}}}
  return pages}
 
-function buildFeat(host){const st=S.settings,fe=featured(),rest=chosen().filter(p=>!fe.includes(p));
+/* 比例格：每件商品依「佔版面比例」排成兩欄卡片。半寬卡高度＝2×比例×版面高；≥45% 的卡片改成整列寬 */
+const AREA_H=180.5,AREA_GAP=3;
+const areaOf=(p,isF)=>{const o=parseFloat(p.area);return o>0?o:isF?S.settings.featArea:S.settings.normArea};
+const fracTxt=v=>"約 1/"+(Math.round(1000/v)/10).toString().replace(/\.0$/,"")+" 頁";
+function areaCard(p,isF,box){const c=catById(p.cat),st=S.settings,ks=dmPhotos(p),main=ks[0],det=ks.slice(1);
+ const hor=box.h<box.w*.62,sz=box.h>=78||(hor&&box.h>=40&&box.w>100)?"l":box.h>=44||(hor&&box.h>=30)?"m":"s";
+ const meta=sz==="l"?[p.sku?esc(p.sku):"",p.date?'發售 '+esc(p.date):""].filter(Boolean).join("　"):"";
+ const showDet=det.length&&(hor?box.h>=34:box.h>=40);
+ return'<article class="ac '+(hor?"hz ":"")+"z"+sz+(isF?" ft":"")+(p.soldout?" so":"")+'" style="left:'+box.x+';top:'+box.y.toFixed(2)+'mm;width:'+box.wc+';height:'+box.h.toFixed(2)+'mm">'+
+ '<div class="acp"><div class="acm">'+(main?pimg(p,main):ico(c.icon))+(isF||p.badge?'<span class="fbt"><b>'+esc(p.badge||"主打推薦")+'</b><i></i></span>':"")+(p.soldout?'<div class="sold"><span>完售</span></div>':"")+'</div>'+
+ (showDet?'<div class="acd">'+det.map(k=>'<span>'+pimg(p,k)+'</span>').join("")+'</div>':"")+'</div>'+
+ '<div class="acx">'+(meta?'<div class="mt">'+meta+'</div>':"")+'<h3>'+esc(p.name)+'</h3>'+(st.showEn&&p.en&&sz!=="s"?'<div class="en">'+esc(p.en)+'</div>':"")+
+ (sz!=="s"&&p.headline?'<div class="hl">'+esc(p.headline)+'</div>':"")+(sz==="l"&&p.desc?'<div class="ds">'+esc(p.desc)+'</div>':"")+'<div class="gap"></div>'+
+ (p.dmNote?'<span class="tg2">'+esc(p.dmNote)+'</span>':"")+(sz==="l"&&p.material?'<div class="mat"><span>材質</span>'+esc(p.material)+'</div>':"")+
+ '<div class="pr">'+priceHTML(p)+'</div></div></article>'}
+function buildArea(host){const fe=featured(),items=fe.map(p=>[p,true]).concat(chosen().filter(p=>!fe.includes(p)).map(p=>[p,false]));
+ const ruler=document.createElement("div");ruler.style.cssText="position:absolute;height:100mm;width:1px";host.appendChild(ruler);const PX=ruler.offsetHeight/100||3.7795;ruler.remove();
+ const pages=[];let pg,ag,avail,used;
+ const newPage=first=>{pg=document.createElement("div");pg.className="page area";
+  pg.innerHTML=head(first?"STALL FLYER":"CATALOG · 續")+'<div class="dbd">'+(first?heroHTML():"")+'<div class="ag"></div></div>'+foot(0,0);
+  host.appendChild(pg);pages.push(pg);ag=pg.querySelector(".ag");avail=ag.clientHeight/PX;used=[0,0]};
+ newPage(true);
+ if(!items.length){ag.outerHTML='<div class="empty">到「商品」勾選要放進 DM 的商品</div>';}
+ const tryPlace=([p,isF],force)=>{const a=Math.min(50,Math.max(3,areaOf(p,isF)))/100,full=a>=.45,raw=(full?a:2*a)*AREA_H;let h=Math.min(AREA_H,raw-AREA_GAP*(1-raw/AREA_H));if(force)h=Math.min(h,avail);
+  {
+   if(full){const y0=Math.max(used[0],used[1]),y=y0?y0+AREA_GAP:0;if(y+h>avail+1.2&&avail-y<h*.8)return false;h=Math.min(h,avail-y);
+    ag.insertAdjacentHTML("beforeend",areaCard(p,isF,{x:"0",wc:"100%",w:132,y,h}));used=[y+h,y+h];return true}
+   for(const c of used[0]<=used[1]?[0,1]:[1,0]){const y=used[c]?used[c]+AREA_GAP:0;if(y+h>avail+1.2&&avail-y<h*.8)continue;h=Math.min(h,avail-y);
+    ag.insertAdjacentHTML("beforeend",areaCard(p,isF,{x:c?"calc(50% + "+AREA_GAP/2+"mm)":"0",wc:"calc(50% - "+AREA_GAP/2+"mm)",w:(132-AREA_GAP)/2,y,h}));used[c]=y+h;return true}
+   return false}};
+ /* keep the order, but let a later (smaller) product fill a gap before starting a new page */
+ const queue=items.slice();
+ while(queue.length){let i=queue.findIndex(it=>tryPlace(it));if(i<0){newPage(false);i=queue.findIndex(it=>tryPlace(it));if(i<0){tryPlace(queue[0],true);i=0}}queue.splice(i,1)}
+ /* 現場優惠＋付款／QR 放在最後一頁的下方；放不下就另起一頁 */
+ const tail=offerHTML()+infoHTML();
+ if(tail&&ag){const d=pg.querySelector(".dbd");d.insertAdjacentHTML("beforeend",tail);
+  if(ag.clientHeight/PX+.3<Math.max(used[0],used[1])){d.querySelectorAll(".dbd>.offer,.dbd>.info").forEach(x=>x.remove());newPage(false);pg.querySelector(".dbd").insertAdjacentHTML("beforeend",tail)}}
+ return pages}
+function buildFeat(host){const st=S.settings,fe=featured(),rest=chosen().filter(p=>!fe.includes(p));if(st.featStyle==="area")return buildArea(host);
  const pages=flowPages(host,rest,{cols:2,row:rowCompact,vars:{"--fth":st.featThumb+"mm"},first:()=>head("STALL FLYER")+'<div class="dbd">'+heroHTML()+
   featBlock(fe)+
   (rest.length?'<div class="st"><b>價目表</b><small>Price list</small><em>'+rest.length+' ITEMS</em></div><div class="flow"><div class="col"></div><div class="col"></div></div>':'<div style="flex:1"></div>')+
